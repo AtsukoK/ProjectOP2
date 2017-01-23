@@ -11,9 +11,9 @@ def text_objects(text, font):
     textSurface = font.render(text, True, colors.black)
     return textSurface, textSurface.get_rect()
 
-def text(font,size, word, x, y,):
-    smallText = pygame.font.SysFont(font,size)
-    textSurf, textRect = text_objects(word, smallText)
+def text(font,size, word, x, y):
+    Text = pygame.font.SysFont(font,size)
+    textSurf, textRect = text_objects(word, Text)
     textRect.center = (x), (y)
     screen.blit(textSurf, textRect)
 
