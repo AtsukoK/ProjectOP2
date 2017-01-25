@@ -16,6 +16,12 @@ def text (text, font, size, posx, posy, color):
     TextRender = Font.render(text, True, color)
     screen.blit(TextRender, (posx, posy))
 
+def text_center(font,size, word, x, y):
+    Text = pygame.font.SysFont(font,size)
+    textSurf, textRect = text_objects(word, Text)
+    textRect.center = (x), (y)
+    screen.blit(textSurf, textRect)
+
 def button(msg,x,y,w,h,ic,ac,action=None):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
@@ -23,10 +29,11 @@ def button(msg,x,y,w,h,ic,ac,action=None):
         pygame.draw.rect(screen, ac,(x,y,w,h))
         if click[0] == 1 and action != None:
             time.sleep(0.12)
+            print("button pressed")
             action()
     else:
-        pygame.draw.rect(screen, ic,(x,y,w,h))
-    smallText = pygame.font.SysFont("comicsansms",20)
+        pygame.draw.rect(screen, ic,(x, y, w, h))
+    smallText = pygame.font.SysFont("comicsansms", 20)
     textSurf, textRect = text_objects(msg, smallText)
     textRect.center = ( (x+(w/2)), (y+(h/2)) )
     screen.blit(textSurf, textRect)
@@ -36,4 +43,6 @@ def game():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
+
+
 
