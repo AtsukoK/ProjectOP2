@@ -8,6 +8,7 @@ import images
 import functions
 import classes
 import time
+
 pygame.init()
 screen_width = 1920
 screen_heigt = 1080
@@ -16,7 +17,9 @@ screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Battleport")
 clock = pygame.time.Clock()
 
-board = classes.Board(44,44, colors.white, colors.snow)
+board = classes.Board()
+player = classes.Player()
+
 
 def intro():
     while not functions.game():
@@ -33,15 +36,25 @@ def intro():
 def pause():
     while not functions.game():
         pygame.draw.rect(screen,colors.brigth_snow, (500,200,960,540))
-        functions.text("comicsansms", 150, "Paused", (screen_width/2), (screen_heigt/4))
+        functions.text("comicsansms", 150, "Paused", (screen_width/2), (screen_heigt/4), colors.black)
         functions.button("Continue", 650, 600, 150, 50,  colors.green, colors.brigth_green, main_game)
         functions.button("Quit", 1000, 600, 150, 50,  colors.red, colors.brigth_red, intro)
         pygame.display.flip()
 
+def ask_name():
+    while not functions.game():
+        screen.fill(colors.black)
+        functions.get_key()
+        functions.button("back", 0, 0, 150, 50,colors.snow, colors.brigth_snow, intro)
+        pygame.display.flip()
+
 def main_game():
     while not functions.game():
-        screen.fill(colors.navy_blue)
+        screen.fill(colors.black)
         board.draw()
+        player.turn()
+        player.update()
+        player.draw()
         functions.button("pause", 0, 0, 150, 50,  colors.snow, colors.brigth_snow, pause)
         pygame.display.flip()
 
