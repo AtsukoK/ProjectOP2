@@ -2,6 +2,11 @@ import pygame
 import functions
 import colors
 
+screen_width = 800
+screen_height = 600
+size = (screen_width, screen_height)
+screen = pygame.display.set_mode(size)
+
 class Board():
     def __init__(self,w,h,ic,ac):
         self.msg = ""
@@ -24,16 +29,26 @@ class Player():
     def __init__(self, player):
         self.player = player
 
+
+
+
+    def name(self):
+        pass
+
+mouse = pygame.mouse.get_pos()
+click = pygame.mouse.get_pressed()
+
 class Boat():
-    def __init__(self, c, x, y, w, h):
-        self.c = c
-        self.x = x
-        self.y = y
+    def __init__(self, mouse, w, h):
+        self.mouse = mouse
         self.w = w
         self.h = h
 
     def draw(self):
-        pygame.draw.ellipse(functions.screen, self.c, (self.x, self.y, self.w, self.h))
+        if 100 < self.mouse[0] < 700:
+            pygame.draw.ellipse(screen, colors.black, (self.mouse[0], self.mouse[1], self.w, self.h))
+            if click[0] == 1:
+                pygame.draw.ellipse(screen, colors.green, (self.mouse[0], self.mouse[1], self.w, self.h))
 
     def update(self):
         pass
