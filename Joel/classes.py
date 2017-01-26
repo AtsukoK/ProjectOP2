@@ -434,18 +434,30 @@ class Player():
                 if keys[pygame.K_a]:
                     self.boat1.x -= 45
                     self.boat1.moves -= 1
+                    if self.boat1.x < 500:
+                        self.boat1.x += 45
+                        self.boat1.moves +=1
                     time.sleep(0.2)
                 elif keys[pygame.K_d]:
                     self.boat1.x += 45
                     self.boat1.moves -= 1
+                    if self.boat1.x > 1356:
+                        self.boat1.x -= 45
+                        self.boat1.moves +=1
                     time.sleep(0.2)
                 elif keys[pygame.K_s]:
                     self.boat1.y += 45
                     self.boat1.moves -= 1
+                    if self.boat1.y > 910:
+                        self.boat1.y -= 45
+                        self.boat1.moves +=1
                     time.sleep(0.2)
                 elif keys[pygame.K_w]:
                     self.boat1.y -= 45
                     self.boat1.moves -= 1
+                    if self.boat1.y < 100:
+                        self.boat1.y += 45
+                        self.boat1.moves +=1
                     time.sleep(0.2)
 
     def moveboat3(self):
@@ -456,18 +468,30 @@ class Player():
                 if keys[pygame.K_a]:
                     self.boat3.x -= 45
                     self.boat3.moves -= 1
+                    if self.boat3.x < 500:
+                        self.boat3.x += 45
+                        self.boat3.moves +=1
                     time.sleep(0.2)
                 elif keys[pygame.K_d]:
                     self.boat3.x += 45
                     self.boat3.moves -= 1
+                    if self.boat3.x > 1356:
+                        self.boat3.x -= 45
+                        self.boat3.moves +=1
                     time.sleep(0.2)
                 elif keys[pygame.K_s]:
                     self.boat3.y += 45
                     self.boat3.moves -= 1
+                    if self.boat3.y > 865:
+                        self.boat3.y -= 45
+                        self.boat3.moves +=1
                     time.sleep(0.2)
                 elif keys[pygame.K_w]:
                     self.boat3.y -= 45
                     self.boat3.moves -= 1
+                    if self.boat3.y < 100:
+                        self.boat3.y += 45
+                        self.boat3.moves +=1
                     time.sleep(0.2)
 
     def moveboat5(self):
@@ -478,18 +502,30 @@ class Player():
                 if keys[pygame.K_a]:
                     self.boat5.x -= 45
                     self.boat5.moves -= 1
+                    if self.boat5.x < 500:
+                        self.boat5.x += 45
+                        self.boat5.moves +=1
                     time.sleep(0.2)
                 elif keys[pygame.K_d]:
                     self.boat5.x += 45
                     self.boat5.moves -= 1
+                    if self.boat5.x > 1356:
+                        self.boat5.x -= 45
+                        self.boat5.moves +=1
                     time.sleep(0.2)
                 elif keys[pygame.K_s]:
                     self.boat5.y += 45
                     self.boat5.moves -= 1
+                    if self.boat5.y > 865:
+                        self.boat5.y -= 45
+                        self.boat5.moves +=1
                     time.sleep(0.2)
                 elif keys[pygame.K_w]:
                     self.boat5.y -= 45
                     self.boat5.moves -= 1
+                    if self.boat5.y < 100:
+                        self.boat5.y += 45
+                        self.boat5.moves +=1
                     time.sleep(0.2)
 
     def moveboat7(self):
@@ -500,18 +536,30 @@ class Player():
                 if keys[pygame.K_a]:
                     self.boat7.x -= 45
                     self.boat7.moves -= 1
+                    if self.boat7.x < 500:
+                        self.boat7.x += 45
+                        self.boat7.moves +=1
                     time.sleep(0.2)
                 elif keys[pygame.K_d]:
                     self.boat7.x += 45
                     self.boat7.moves -= 1
+                    if self.boat7.x > 1356:
+                        self.boat7.x -= 45
+                        self.boat7.moves +=1
                     time.sleep(0.2)
                 elif keys[pygame.K_s]:
                     self.boat7.y += 45
                     self.boat7.moves -= 1
+                    if self.boat7.y > 820:
+                        self.boat7.y -= 45
+                        self.boat7.moves +=1
                     time.sleep(0.2)
                 elif keys[pygame.K_w]:
                     self.boat7.y -= 45
                     self.boat7.moves -= 1
+                    if self.boat7.y < 100:
+                        self.boat7.y += 45
+                        self.boat7.moves +=1
                     time.sleep(0.2)
 
     def movemove2(self):
@@ -562,18 +610,30 @@ class Player():
                 if keys[pygame.K_a]:
                     self.boat2.x -= 45
                     self.boat2.moves -= 1
+                    if self.boat2.x < 500:
+                        self.boat2.x += 45
+                        self.boat2.moves +=1
                     time.sleep(0.2)
                 elif keys[pygame.K_d]:
                     self.boat2.x += 45
                     self.boat2.moves -= 1
+                    if self.boat2.x > 1356:
+                        self.boat2.x -= 45
+                        self.boat2.moves +=1
                     time.sleep(0.2)
                 elif keys[pygame.K_s]:
                     self.boat2.y += 45
                     self.boat2.moves -= 1
+                    if self.boat2.y > 910:
+                        self.boat2.y -= 45
+                        self.boat2.moves +=1
                     time.sleep(0.2)
                 elif keys[pygame.K_w]:
                     self.boat2.y -= 45
                     self.boat2.moves -= 1
+                    if self.boat2.y < 100:
+                        self.boat2.y += 45
+                        self.boat2.moves +=1
                     time.sleep(0.2)
 
     def moveboat4(self):
@@ -584,18 +644,30 @@ class Player():
                 if keys[pygame.K_a]:
                     self.boat4.x -= 45
                     self.boat4.moves -= 1
+                    if self.boat4.x < 500:
+                        self.boat4.x += 45
+                        self.boat4.moves +=1
                     time.sleep(0.2)
                 elif keys[pygame.K_d]:
                     self.boat4.x += 45
                     self.boat4.moves -= 1
+                    if self.boat4.x > 1356:
+                        self.boat4.x -= 45
+                        self.boat4.moves +=1
                     time.sleep(0.2)
                 elif keys[pygame.K_s]:
                     self.boat4.y += 45
                     self.boat4.moves -= 1
+                    if self.boat4.y > 865:
+                        self.boat4.y -= 45
+                        self.boat4.moves +=1
                     time.sleep(0.2)
                 elif keys[pygame.K_w]:
                     self.boat4.y -= 45
                     self.boat4.moves -= 1
+                    if self.boat4.y < 100:
+                        self.boat4.y += 45
+                        self.boat4.moves +=1
                     time.sleep(0.2)
 
     def moveboat6(self):
@@ -606,18 +678,30 @@ class Player():
                 if keys[pygame.K_a]:
                     self.boat6.x -= 45
                     self.boat6.moves -= 1
+                    if self.boat6.x < 500:
+                        self.boat6.x += 45
+                        self.boat6.moves +=1
                     time.sleep(0.2)
                 elif keys[pygame.K_d]:
                     self.boat6.x += 45
                     self.boat6.moves -= 1
+                    if self.boat6.x > 1356:
+                        self.boat6.x -= 45
+                        self.boat6.moves +=1
                     time.sleep(0.2)
                 elif keys[pygame.K_s]:
                     self.boat6.y += 45
                     self.boat6.moves -= 1
+                    if self.boat6.y > 865:
+                        self.boat6.y -= 45
+                        self.boat6.moves +=1
                     time.sleep(0.2)
                 elif keys[pygame.K_w]:
                     self.boat6.y -= 45
                     self.boat6.moves -= 1
+                    if self.boat6.y < 100:
+                        self.boat6.y += 45
+                        self.boat6.moves +=1
                     time.sleep(0.2)
 
     def moveboat8(self):
@@ -628,18 +712,30 @@ class Player():
                 if keys[pygame.K_a]:
                     self.boat8.x -= 45
                     self.boat8.moves -= 1
+                    if self.boat8.x < 500:
+                        self.boat8.x += 45
+                        self.boat8.moves +=1
                     time.sleep(0.2)
                 elif keys[pygame.K_d]:
                     self.boat8.x += 45
                     self.boat8.moves -= 1
+                    if self.boat8.x > 1356:
+                        self.boat8.x -= 45
+                        self.boat8.moves +=1
                     time.sleep(0.2)
                 elif keys[pygame.K_s]:
                     self.boat8.y += 45
                     self.boat8.moves -= 1
+                    if self.boat8.y > 820:
+                        self.boat8.y -= 45
+                        self.boat8.moves +=1
                     time.sleep(0.2)
                 elif keys[pygame.K_w]:
                     self.boat8.y -= 45
                     self.boat8.moves -= 1
+                    if self.boat8.y < 100:
+                        self.boat8.y += 45
+                        self.boat8.moves +=1
                     time.sleep(0.2)
 
 
