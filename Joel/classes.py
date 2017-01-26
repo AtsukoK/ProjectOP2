@@ -67,17 +67,33 @@ class Player():
     def name1(self):
         self.player1_turn = False
         self.player2_turn = True
+        self.boat1.moves = 3
+        self.boat3.moves = 2
+        self.boat5.moves = 2
+        self.boat7.moves = 1
 
     def name2(self):
         self.player2_turn = False
         self.player1_turn = True
+        self.boat2.moves = 3
+        self.boat4.moves = 2
+        self.boat6.moves = 2
+        self.boat8.moves = 1
 
     def update(self):
         click = pygame.mouse.get_pressed()
         mouse = pygame.mouse.get_pos()
         if self.beurt <8:
             if self.player1_turn == True:
-                if click[0] and mouse[1] > 955 and mouse[1] < 1000 and mouse[0] > 500 and mouse [0] < 1400 and mouse[0] < self.boat1_width_1 and mouse[0] < self.boat3_width_1 and mouse[0] < self.boat5_width_1 or click[0] and mouse[1] > 955 and mouse[1] < 1000 and mouse[0] > 500 and mouse [0] < 1400 and mouse[0] > self.boat1_width_2 and mouse[0] > self.boat3_width_2 and mouse[0] > self.boat5_width_2:
+                if click[0] and mouse[1] > 955 and mouse[1] < 1000 and mouse[0] > 500 and mouse [0] < 1400 and mouse[0] < self.boat1_width_1 and mouse[0] < self.boat3_width_1 and mouse[0] < self.boat5_width_1 \
+                or click[0] and mouse[1] > 955 and mouse[1] < 1000 and mouse[0] > 500 and mouse [0] < 1400 and mouse[0] > self.boat1_width_2 and mouse[0] > self.boat3_width_2 and mouse[0] > self.boat5_width_2 \
+                or click[0] and mouse[1] > 955 and mouse[1] < 1000 and mouse[0] > 500 and mouse [0] < 1400 and mouse[0] < self.boat1_width_1 and mouse[0] < self.boat3_width_1 and mouse[0] > self.boat5_width_2 \
+                or click[0] and mouse[1] > 955 and mouse[1] < 1000 and mouse[0] > 500 and mouse [0] < 1400 and mouse[0] < self.boat1_width_1 and mouse[0] > self.boat3_width_2 and mouse[0] > self.boat5_width_2 \
+                or click[0] and mouse[1] > 955 and mouse[1] < 1000 and mouse[0] > 500 and mouse [0] < 1400 and mouse[0] < self.boat1_width_1 and mouse[0] > self.boat3_width_2 and mouse[0] < self.boat5_width_1 \
+                or click[0] and mouse[1] > 955 and mouse[1] < 1000 and mouse[0] > 500 and mouse [0] < 1400 and mouse[0] > self.boat1_width_2 and mouse[0] < self.boat3_width_1 and mouse[0] < self.boat5_width_1 \
+                or click[0] and mouse[1] > 955 and mouse[1] < 1000 and mouse[0] > 500 and mouse [0] < 1400 and mouse[0] > self.boat1_width_2 and mouse[0] < self.boat3_width_1 and mouse[0] > self.boat5_width_2 \
+                or click[0] and mouse[1] > 955 and mouse[1] < 1000 and mouse[0] > 500 and mouse [0] < 1400 and mouse[0] > self.boat1_width_2 and mouse[0] > self.boat3_width_2 and mouse[0] < self.boat5_width_1:
+
                     self.beurt += 1
                     self.player1_turn = False
                     self.player2_turn = True
@@ -106,7 +122,14 @@ class Player():
                         self.boat7 = Boat(colors.brigth_red, x, 820, 44, 180, 4, 1)
                         self.boat7_draw = True
             elif self.player2_turn == True:
-                if click[0] and mouse[1] > 100 and mouse [1] < 145 and mouse[0] > 500 and mouse [0] < 1400 and mouse[0] < self.boat2_width_1 and mouse[0] < self.boat4_width_1 and mouse[0] < self.boat6_width_1 or click[0] and mouse[1] > 100 and mouse [1] < 145 and mouse[0] > 500 and mouse [0] < 1400 and mouse[0] > self.boat2_width_2 and mouse[0] > self.boat4_width_2 and mouse[0] > self.boat6_width_2:
+                if click[0] and mouse[1] > 100 and mouse[1] < 145 and mouse[0] > 500 and mouse [0] < 1400 and mouse[0] < self.boat2_width_1 and mouse[0] < self.boat4_width_1 and mouse[0] < self.boat6_width_1 \
+                or click[0] and mouse[1] > 100 and mouse[1] < 145 and mouse[0] > 500 and mouse [0] < 1400 and mouse[0] > self.boat2_width_2 and mouse[0] > self.boat4_width_2 and mouse[0] > self.boat6_width_2 \
+                or click[0] and mouse[1] > 100 and mouse[1] < 145 and mouse[0] > 500 and mouse [0] < 1400 and mouse[0] < self.boat2_width_1 and mouse[0] < self.boat4_width_1 and mouse[0] > self.boat6_width_2 \
+                or click[0] and mouse[1] > 100 and mouse[1] < 145 and mouse[0] > 500 and mouse [0] < 1400 and mouse[0] < self.boat2_width_1 and mouse[0] > self.boat4_width_2 and mouse[0] > self.boat6_width_2 \
+                or click[0] and mouse[1] > 100 and mouse[1] < 145 and mouse[0] > 500 and mouse [0] < 1400 and mouse[0] < self.boat2_width_1 and mouse[0] > self.boat4_width_2 and mouse[0] < self.boat6_width_1 \
+                or click[0] and mouse[1] > 100 and mouse[1] < 145 and mouse[0] > 500 and mouse [0] < 1400 and mouse[0] > self.boat2_width_2 and mouse[0] < self.boat4_width_1 and mouse[0] < self.boat6_width_1 \
+                or click[0] and mouse[1] > 100 and mouse[1] < 145 and mouse[0] > 500 and mouse [0] < 1400 and mouse[0] > self.boat2_width_2 and mouse[0] < self.boat4_width_1 and mouse[0] > self.boat6_width_2 \
+                or click[0] and mouse[1] > 100 and mouse[1] < 145 and mouse[0] > 500 and mouse [0] < 1400 and mouse[0] > self.boat2_width_2 and mouse[0] > self.boat4_width_2 and mouse[0] < self.boat6_width_1:
                     self.beurt += 1
                     self.player2_turn = False
                     self.player1_turn = True
