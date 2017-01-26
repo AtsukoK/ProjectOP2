@@ -15,7 +15,7 @@ class Board():
         self.w = 44
         self.h = 44
         self.c = colors.white
-
+        
     def draw(self):
         for y in range(100,1000,45):
             for x in range(500,1400, 45):
@@ -48,9 +48,9 @@ class Player():
         elif self.player1_turn == True:
             functions.text("comicsansms", 20, "Player1", 420, 120, colors.brigth_red)
         if self.player2_turn == False:
-            functions.text("comicsansms", 20, "Player2", 1520, 120, colors.white)
+            functions.text("comicsansms", 20, "Player2", 1470, 120, colors.white)
         elif self.player2_turn == True:
-            functions.text("comicsansms", 20, "Player2", 1520, 120, colors.brigth_blue)
+            functions.text("comicsansms", 20, "Player2", 1470, 120, colors.brigth_blue)
 
     def name1(self):
         self.player1_turn = False
@@ -73,25 +73,25 @@ class Player():
                         x = mouse[0]
                         while (x - 455) % 45 != 0:
                             x -=1 
-                        self.boat1 = Boat(colors.brigth_red, x, 910, 44, 90)
+                        self.boat1 = Boat(colors.brigth_red, x, 910, 44, 90, 2)
                         self.boat1_draw = True
                     elif self.beurt == 3:
                         x = mouse[0]
                         while (x - 455) % 45 != 0:
                             x -=1 
-                        self.boat3 = Boat(colors.brigth_red, x, 865, 44, 135)
+                        self.boat3 = Boat(colors.brigth_red, x, 865, 44, 135, 3)
                         self.boat3_draw = True
                     elif self.beurt == 5:
                         x = mouse[0]
                         while (x - 455) % 45 != 0:
                             x -=1 
-                        self.boat5 = Boat(colors.brigth_red, x, 865, 44, 135)
+                        self.boat5 = Boat(colors.brigth_red, x, 865, 44, 135, 3)
                         self.boat5_draw = True
                     elif self.beurt == 7:
                         x = mouse[0]
                         while (x - 455) % 45 != 0:
                             x -=1 
-                        self.boat7 = Boat(colors.brigth_red, x, 820, 44, 180)
+                        self.boat7 = Boat(colors.brigth_red, x, 820, 44, 180, 4)
                         self.boat7_draw = True
             elif self.player2_turn == True:
                 if click[0] and mouse[1] > 100 and mouse [1] < 145 and mouse[0] > 500 and mouse [0] < 1400:
@@ -102,31 +102,45 @@ class Player():
                         x = mouse[0]
                         while (x - 455) % 45 != 0:
                             x -=1 
-                        self.boat2 = Boat(colors.brigth_blue, x, 100, 44, 90)
+                        self.boat2 = Boat(colors.brigth_blue, x, 100, 44, 90, 2)
                         self.boat2_draw = True
                     elif self.beurt == 4:
                         x = mouse[0]
                         while (x - 455) % 45 != 0:
                             x -=1 
-                        self.boat4 = Boat(colors.brigth_blue, x, 100, 44, 135)
+                        self.boat4 = Boat(colors.brigth_blue, x, 100, 44, 135, 3)
                         self.boat4_draw = True
                     elif self.beurt == 6:
                         x = mouse[0]
                         while (x - 455) % 45 != 0:
                             x -=1 
-                        self.boat6 = Boat(colors.brigth_blue, x, 100, 44, 135)
+                        self.boat6 = Boat(colors.brigth_blue, x, 100, 44, 135, 3)
                         self.boat6_draw = True
                     elif self.beurt == 8:
                         x = mouse[0]
                         while (x - 455) % 45 != 0:
                             x -=1 
-                        self.boat8 = Boat(colors.brigth_blue, x, 100, 44, 180)
+                        self.boat8 = Boat(colors.brigth_blue, x, 100, 44, 180, 4)
                         self.boat8_draw = True
         else:
             if self.player1_turn == True:
+                functions.button("move", 350, 800, 150, 50, colors.green, colors.brigth_green, None)
+                functions.button("turn", 350, 850, 150, 50, colors.snow, colors.brigth_snow, None)
+                functions.button("attack", 350, 900, 150, 50, colors.yellow, colors.brigth_yellow, None)
                 functions.button("end turn", 350, 950, 150, 50, colors.red, colors.brigth_red, self.name1)
+                functions.text("comicsansms",20, "boat 1 health:", 400, 400, colors.brigth_red)
+                functions.text("comicsansms",20, "boat 2 health:", 400, 450, colors.brigth_red)
+                functions.text("comicsansms",20, "boat 3 health:", 400, 500, colors.brigth_red)
+                functions.text("comicsansms",20, "boat 4 health:", 400, 550, colors.brigth_red)
             elif self.player2_turn == True:
+                functions.button("move", 1400, 800, 150, 50, colors.green, colors.brigth_green, None)
+                functions.button("turn", 1400, 850, 150, 50, colors.snow, colors.brigth_snow, None)
+                functions.button("attack", 1400, 900, 150, 50, colors.yellow, colors.brigth_yellow, None)
                 functions.button("end turn", 1400, 950, 150, 50, colors.red, colors.brigth_red, self.name2)
+                functions.text("comicsansms",20, "boat 1 health:", 1480, 400, colors.brigth_blue)
+                functions.text("comicsansms",20, "boat 2 health:", 1480, 450, colors.brigth_blue)
+                functions.text("comicsansms",20, "boat 3 health:", 1480, 500, colors.brigth_blue)
+                functions.text("comicsansms",20, "boat 4 health:", 1480, 550, colors.brigth_blue)
 
     def draw(self):
         if self.boat1_draw == True:
@@ -147,12 +161,13 @@ class Player():
             self.boat8.draw()
 
 class Boat():
-    def __init__(self, c, x, y, w, h):
+    def __init__(self, c, x, y, w, h, health):
         self.c = c
         self.x = x
         self.y = y
         self.w = w
         self.h = h
+        self.health = health
 
     def draw(self):
         pygame.draw.ellipse(screen, self.c, (self.x, self.y, self.w, self.h))
