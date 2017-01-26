@@ -1,7 +1,6 @@
 import pygame
 import colors
 import time
-import string
 
 screen_width = 1920
 screen_heigt = 1080

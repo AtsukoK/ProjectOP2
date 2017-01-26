@@ -69,12 +69,12 @@ class Player():
                     self.beurt += 1
                     self.player1_turn = False
                     self.player2_turn = True
-                    if self.beurt == 1:
+                    if self.beurt == 1:                    
                         x = mouse[0]
                         while (x - 455) % 45 != 0:
                             x -=1 
                         self.boat1 = Boat(colors.brigth_red, x, 910, 44, 90, 2, 3)
-                        self.boat1_draw = True
+                        self.boat1_draw = True                        
                     elif self.beurt == 3:
                         x = mouse[0]
                         while (x - 455) % 45 != 0:
@@ -167,9 +167,6 @@ class Player():
             self.boat7.draw()
         if self.boat8_draw == True:
             self.boat8.draw()
-
-    def rotate(self):
-        pass
 
 class Boat(Player):
     def __init__(self, c, x, y, w, h, health, moves):
