@@ -73,25 +73,25 @@ class Player():
                         x = mouse[0]
                         while (x - 455) % 45 != 0:
                             x -=1 
-                        self.boat1 = Boat(colors.brigth_red, x, 910, 44, 90, 2)
+                        self.boat1 = Boat(colors.brigth_red, x, 910, 44, 90, 2, 3)
                         self.boat1_draw = True
                     elif self.beurt == 3:
                         x = mouse[0]
                         while (x - 455) % 45 != 0:
                             x -=1 
-                        self.boat3 = Boat(colors.brigth_red, x, 865, 44, 135, 3)
+                        self.boat3 = Boat(colors.brigth_red, x, 865, 44, 135, 3, 2)
                         self.boat3_draw = True
                     elif self.beurt == 5:
                         x = mouse[0]
                         while (x - 455) % 45 != 0:
                             x -=1 
-                        self.boat5 = Boat(colors.brigth_red, x, 865, 44, 135, 3)
+                        self.boat5 = Boat(colors.brigth_red, x, 865, 44, 135, 3, 2)
                         self.boat5_draw = True
                     elif self.beurt == 7:
                         x = mouse[0]
                         while (x - 455) % 45 != 0:
                             x -=1 
-                        self.boat7 = Boat(colors.brigth_red, x, 820, 44, 180, 4)
+                        self.boat7 = Boat(colors.brigth_red, x, 820, 44, 180, 4, 1)
                         self.boat7_draw = True
             elif self.player2_turn == True:
                 if click[0] and mouse[1] > 100 and mouse [1] < 145 and mouse[0] > 500 and mouse [0] < 1400:
@@ -102,25 +102,25 @@ class Player():
                         x = mouse[0]
                         while (x - 455) % 45 != 0:
                             x -=1 
-                        self.boat2 = Boat(colors.brigth_blue, x, 100, 44, 90, 2)
+                        self.boat2 = Boat(colors.brigth_blue, x, 100, 44, 90, 2, 3)
                         self.boat2_draw = True
                     elif self.beurt == 4:
                         x = mouse[0]
                         while (x - 455) % 45 != 0:
                             x -=1 
-                        self.boat4 = Boat(colors.brigth_blue, x, 100, 44, 135, 3)
+                        self.boat4 = Boat(colors.brigth_blue, x, 100, 44, 135, 3, 2)
                         self.boat4_draw = True
                     elif self.beurt == 6:
                         x = mouse[0]
                         while (x - 455) % 45 != 0:
                             x -=1 
-                        self.boat6 = Boat(colors.brigth_blue, x, 100, 44, 135, 3)
+                        self.boat6 = Boat(colors.brigth_blue, x, 100, 44, 135, 3, 2)
                         self.boat6_draw = True
                     elif self.beurt == 8:
                         x = mouse[0]
                         while (x - 455) % 45 != 0:
                             x -=1 
-                        self.boat8 = Boat(colors.brigth_blue, x, 100, 44, 180, 4)
+                        self.boat8 = Boat(colors.brigth_blue, x, 100, 44, 180, 4, 1)
                         self.boat8_draw = True
         else:
             if self.player1_turn == True:
@@ -128,19 +128,27 @@ class Player():
                 functions.button("turn", 350, 850, 150, 50, colors.snow, colors.brigth_snow, None)
                 functions.button("attack", 350, 900, 150, 50, colors.yellow, colors.brigth_yellow, None)
                 functions.button("end turn", 350, 950, 150, 50, colors.red, colors.brigth_red, self.name1)
-                functions.text("comicsansms",20, "boat 1 health:", 400, 400, colors.brigth_red)
-                functions.text("comicsansms",20, "boat 2 health:", 400, 450, colors.brigth_red)
-                functions.text("comicsansms",20, "boat 3 health:", 400, 500, colors.brigth_red)
-                functions.text("comicsansms",20, "boat 4 health:", 400, 550, colors.brigth_red)
+                functions.text("comicsansms",20, "boat 1 health:" + str(self.boat1.health), 400, 400, colors.brigth_red)
+                functions.text("comicsansms",20, "boat 1 moves:" + str(self.boat1.moves), 400, 450, colors.red)
+                functions.text("comicsansms",20, "boat 2 health:" + str(self.boat3.health), 400, 500, colors.brigth_red)
+                functions.text("comicsansms",20, "boat 2 moves:" + str(self.boat3.moves), 400, 550, colors.red)
+                functions.text("comicsansms",20, "boat 3 health:" + str(self.boat5.health), 400, 600, colors.brigth_red)
+                functions.text("comicsansms",20, "boat 3 moves:" + str(self.boat5.moves), 400, 650, colors.red)
+                functions.text("comicsansms",20, "boat 4 health:" + str(self.boat7.health), 400, 700, colors.brigth_red)
+                functions.text("comicsansms",20, "boat 4 moves:" + str(self.boat7.moves), 400, 750, colors.red)
             elif self.player2_turn == True:
                 functions.button("move", 1400, 800, 150, 50, colors.green, colors.brigth_green, None)
                 functions.button("turn", 1400, 850, 150, 50, colors.snow, colors.brigth_snow, None)
                 functions.button("attack", 1400, 900, 150, 50, colors.yellow, colors.brigth_yellow, None)
                 functions.button("end turn", 1400, 950, 150, 50, colors.red, colors.brigth_red, self.name2)
-                functions.text("comicsansms",20, "boat 1 health:", 1480, 400, colors.brigth_blue)
-                functions.text("comicsansms",20, "boat 2 health:", 1480, 450, colors.brigth_blue)
-                functions.text("comicsansms",20, "boat 3 health:", 1480, 500, colors.brigth_blue)
-                functions.text("comicsansms",20, "boat 4 health:", 1480, 550, colors.brigth_blue)
+                functions.text("comicsansms",20, "boat 1 health:" + str(self.boat2.health), 1480, 400, colors.brigth_blue)
+                functions.text("comicsansms",20, "boat 1 moves:" + str(self.boat2.moves), 1480, 450, colors.blue)
+                functions.text("comicsansms",20, "boat 2 health:" + str(self.boat4.health), 1480, 500, colors.brigth_blue)
+                functions.text("comicsansms",20, "boat 1 moves:" + str(self.boat4.moves), 1480, 550, colors.blue)
+                functions.text("comicsansms",20, "boat 3 health:" + str(self.boat6.health), 1480, 600, colors.brigth_blue)
+                functions.text("comicsansms",20, "boat 1 moves:" + str(self.boat6.moves), 1480, 650, colors.blue)
+                functions.text("comicsansms",20, "boat 4 health:" + str(self.boat8.health), 1480, 700, colors.brigth_blue)
+                functions.text("comicsansms",20, "boat 4 moves:" + str(self.boat8.moves), 1480, 750, colors.blue)
 
     def draw(self):
         if self.boat1_draw == True:
@@ -160,14 +168,18 @@ class Player():
         if self.boat8_draw == True:
             self.boat8.draw()
 
-class Boat():
-    def __init__(self, c, x, y, w, h, health):
+    def rotate(self):
+        pass
+
+class Boat(Player):
+    def __init__(self, c, x, y, w, h, health, moves):
         self.c = c
         self.x = x
         self.y = y
         self.w = w
         self.h = h
         self.health = health
+        self.moves = moves
 
     def draw(self):
         pygame.draw.ellipse(screen, self.c, (self.x, self.y, self.w, self.h))
