@@ -41,6 +41,18 @@ class Player():
         self.boat6_draw = False
         self.boat7_draw = False
         self.boat8_draw = False
+        self.boat1_width_1 = 1920
+        self.boat1_width_2 = 0
+        self.boat2_width_1 = 1920
+        self.boat2_width_2 = 0
+        self.boat3_width_1 = 1920
+        self.boat3_width_2 = 0
+        self.boat4_width_1 = 1920
+        self.boat4_width_2 = 0
+        self.boat5_width_1 = 1920
+        self.boat5_width_2 = 0
+        self.boat6_width_1 = 1920
+        self.boat6_width_2 = 0
 
     def turn(self):
         if self.player1_turn == False:
@@ -65,7 +77,7 @@ class Player():
         mouse = pygame.mouse.get_pos()
         if self.beurt <8:
             if self.player1_turn == True:
-                if click[0] and mouse[1] > 955 and mouse[1] < 1000 and mouse[0] > 500 and mouse [0] < 1400:
+                if click[0] and mouse[1] > 955 and mouse[1] < 1000 and mouse[0] > 500 and mouse [0] < 1400 and mouse[0] < self.boat1_width_1 and mouse[0] < self.boat3_width_1 and mouse[0] < self.boat5_width_1 or click[0] and mouse[1] > 955 and mouse[1] < 1000 and mouse[0] > 500 and mouse [0] < 1400 and mouse[0] > self.boat1_width_2 and mouse[0] > self.boat3_width_2 and mouse[0] > self.boat5_width_2:
                     self.beurt += 1
                     self.player1_turn = False
                     self.player2_turn = True
@@ -94,7 +106,7 @@ class Player():
                         self.boat7 = Boat(colors.brigth_red, x, 820, 44, 180, 4, 1)
                         self.boat7_draw = True
             elif self.player2_turn == True:
-                if click[0] and mouse[1] > 100 and mouse [1] < 145 and mouse[0] > 500 and mouse [0] < 1400:
+                if click[0] and mouse[1] > 100 and mouse [1] < 145 and mouse[0] > 500 and mouse [0] < 1400 and mouse[0] < self.boat2_width_1 and mouse[0] < self.boat4_width_1 and mouse[0] < self.boat6_width_1 or click[0] and mouse[1] > 100 and mouse [1] < 145 and mouse[0] > 500 and mouse [0] < 1400 and mouse[0] > self.boat2_width_2 and mouse[0] > self.boat4_width_2 and mouse[0] > self.boat6_width_2:
                     self.beurt += 1
                     self.player2_turn = False
                     self.player1_turn = True
@@ -152,17 +164,29 @@ class Player():
 
     def draw(self):
         if self.boat1_draw == True:
-            self.boat1.draw()
+            self.boat1.draw()   
+            self.boat1_width_1 = self.boat1.x
+            self.boat1_width_2 = (self.boat1.x + 45)
         if self.boat2_draw == True:
             self.boat2.draw()
+            self.boat2_width_1 = self.boat2.x
+            self.boat2_width_2 = (self.boat2.x + 45)
         if self.boat3_draw == True:
             self.boat3.draw()
+            self.boat3_width_1 = self.boat3.x
+            self.boat3_width_2 = (self.boat3.x + 45)
         if self.boat4_draw == True:
             self.boat4.draw()
+            self.boat4_width_1 = self.boat4.x
+            self.boat4_width_2 = (self.boat4.x + 45)
         if self.boat5_draw == True:
             self.boat5.draw()
+            self.boat5_width_1 = self.boat5.x
+            self.boat5_width_2 = (self.boat5.x + 45)
         if self.boat6_draw == True:
             self.boat6.draw()
+            self.boat6_width_1 = self.boat6.x
+            self.boat6_width_2 = (self.boat6.x + 45)
         if self.boat7_draw == True:
             self.boat7.draw()
         if self.boat8_draw == True:
