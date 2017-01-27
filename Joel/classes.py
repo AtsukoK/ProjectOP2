@@ -68,6 +68,16 @@ class Player():
 
         self.boat_move = 0
 
+    def base_color(self):
+        self.boat1.c = colors.red
+        self.boat3.c = colors.red
+        self.boat5.c = colors.red
+        self.boat7.c = colors.red
+        self.boat2.c = colors.blue
+        self.boat4.c = colors.blue
+        self.boat6.c = colors.blue
+        self.boat8.c = colors.blue
+
     def turn(self):
         if self.player1_turn == False:
             functions.text("comicsansms", 20, "Player1", 420, 120, colors.white)
@@ -93,10 +103,7 @@ class Player():
         self.turn1_def = False
         self.attack1_def = False
         self.boat_move = 0
-        self.boat1.c = colors.red
-        self.boat3.c = colors.red
-        self.boat5.c = colors.red
-        self.boat7.c = colors.red
+        self.base_color()
 
     def name2(self):
         self.player2_turn = False
@@ -113,10 +120,7 @@ class Player():
         self.turn2_def = False
         self.attack2_def = False
         self.boat_move = 0
-        self.boat2.c = colors.blue
-        self.boat4.c = colors.blue
-        self.boat6.c = colors.blue
-        self.boat8.c = colors.blue
+        self.base_color()
 
     def update(self):
         click = pygame.mouse.get_pressed()
@@ -258,30 +262,21 @@ class Player():
         self.turn1_def = False
         self.attack1_def = False
         self.boat_move = 0
-        self.boat1.c = colors.red
-        self.boat3.c = colors.red
-        self.boat5.c = colors.red
-        self.boat7.c = colors.red
+        self.base_color()
 
     def turn_boat1(self):
         self.move1_def = False
         self.turn1_def = True
         self.attack1_def = False
         self.boat_move = 0
-        self.boat1.c = colors.red
-        self.boat3.c = colors.red
-        self.boat5.c = colors.red
-        self.boat7.c = colors.red
+        self.base_color()
 
     def attack_boat1(self):
         self.move1_def = False
         self.turn1_def = False
         self.attack1_def = True
         self.boat_move = 0
-        self.boat1.c = colors.red
-        self.boat3.c = colors.red
-        self.boat5.c = colors.red
-        self.boat7.c = colors.red
+        self.base_color()
 
     def move1(self):
         if self.move1_def == True:
@@ -309,30 +304,21 @@ class Player():
         self.turn2_def = False
         self.attack2_def = False
         self.boat_move = 0
-        self.boat2.c = colors.blue
-        self.boat4.c = colors.blue
-        self.boat6.c = colors.blue
-        self.boat8.c = colors.blue
+        self.base_color()
 
     def turn_boat2(self):
         self.move2_def = False
         self.turn2_def = True
         self.attack2_def = False
         self.boat_move = 0
-        self.boat2.c = colors.blue
-        self.boat4.c = colors.blue
-        self.boat6.c = colors.blue
-        self.boat8.c = colors.blue
+        self.base_color()
 
     def attack_boat2(self):
         self.move2_def = False
         self.turn2_def = False
         self.attack2_def = True
         self.boat_move = 0
-        self.boat2.c = colors.blue
-        self.boat4.c = colors.blue
-        self.boat6.c = colors.blue
-        self.boat8.c = colors.blue
+        self.base_color()
 
     def move2(self):
         if self.move2_def == True:
@@ -357,31 +343,19 @@ class Player():
 
     def movemove1(self):
         self.boat_move = 1
-        self.boat1.c = colors.red
-        self.boat3.c = colors.red
-        self.boat5.c = colors.red
-        self.boat7.c = colors.red
+        self.base_color()
 
     def movemove3(self):
         self.boat_move = 3
-        self.boat1.c = colors.red
-        self.boat3.c = colors.red
-        self.boat5.c = colors.red
-        self.boat7.c = colors.red
+        self.base_color()
 
     def movemove5(self):
         self.boat_move = 5
-        self.boat1.c = colors.red
-        self.boat3.c = colors.red
-        self.boat5.c = colors.red
-        self.boat7.c = colors.red
+        self.base_color()
 
     def movemove7(self):
         self.boat_move = 7
-        self.boat1.c = colors.red
-        self.boat3.c = colors.red
-        self.boat5.c = colors.red
-        self.boat7.c = colors.red
+        self.base_color()
 
     def moveboat1(self):
         if self.boat_move == 1:
@@ -521,31 +495,19 @@ class Player():
 
     def movemove2(self):
         self.boat_move = 2
-        self.boat2.c = colors.blue
-        self.boat4.c = colors.blue
-        self.boat6.c = colors.blue
-        self.boat8.c = colors.blue
+        self.base_color()
 
     def movemove4(self):
         self.boat_move = 4
-        self.boat2.c = colors.blue
-        self.boat4.c = colors.blue
-        self.boat6.c = colors.blue
-        self.boat8.c = colors.blue
+        self.base_color()
 
     def movemove6(self):
         self.boat_move = 6
-        self.boat2.c = colors.blue
-        self.boat4.c = colors.blue
-        self.boat6.c = colors.blue
-        self.boat8.c = colors.blue
+        self.base_color()
 
     def movemove8(self):
         self.boat_move = 8
-        self.boat2.c = colors.blue
-        self.boat4.c = colors.blue
-        self.boat6.c = colors.blue
-        self.boat8.c = colors.blue
+        self.base_color()
 
     def moveboat2(self):
         if self.boat_move == 2:
