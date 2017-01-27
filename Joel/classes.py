@@ -68,6 +68,10 @@ class Player():
 
         self.boat_move = 0
 
+        self.player_attack = 2
+
+        self.thing = 0
+
     def base_color(self):
         self.boat1.c = colors.red
         self.boat3.c = colors.red
@@ -99,11 +103,10 @@ class Player():
         self.boat3.attack = 1
         self.boat5.attack = 1
         self.boat7.attack = 1
-        self.move1_def = False
-        self.turn1_def = False
-        self.attack1_def = False
         self.boat_move = 0
         self.base_color()
+        self.player_attack = 2
+        self.thing = 0
 
     def name2(self):
         self.player2_turn = False
@@ -116,11 +119,10 @@ class Player():
         self.boat4.attack = 1
         self.boat6.attack = 1
         self.boat8.attack = 1
-        self.move2_def = False
-        self.turn2_def = False
-        self.attack2_def = False
         self.boat_move = 0
         self.base_color()
+        self.player_attack = 2
+        self.thing = 0
 
     def update(self):
         click = pygame.mouse.get_pressed()
@@ -258,84 +260,72 @@ class Player():
             self.boat8.draw()
 
     def move_boat1(self):
-        self.move1_def = True
-        self.turn1_def = False
-        self.attack1_def = False
+        self.thing = 1
         self.boat_move = 0
         self.base_color()
 
     def turn_boat1(self):
-        self.move1_def = False
-        self.turn1_def = True
-        self.attack1_def = False
+        self.thing = 2
         self.boat_move = 0
         self.base_color()
 
     def attack_boat1(self):
-        self.move1_def = False
-        self.turn1_def = False
-        self.attack1_def = True
+        self.thing = 3
         self.boat_move = 0
         self.base_color()
 
     def move1(self):
-        if self.move1_def == True:
+        if self.thing == 1:
             functions.button("boat 1", 200, 800, 150, 50, colors.green, colors.brigth_green, self.movemove1)
             functions.button("boat 2", 200, 850, 150, 50, colors.green, colors.brigth_green, self.movemove3)
             functions.button("boat 3", 200, 900, 150, 50, colors.green, colors.brigth_green, self.movemove5)
             functions.button("boat 4", 200, 950, 150, 50, colors.green, colors.brigth_green, self.movemove7)
 
     def turn1(self):
-        if self.turn1_def == True:
+        if self.thing == 2:
             functions.button("boat 1", 200, 800, 150, 50, colors.snow, colors.brigth_snow, None)
             functions.button("boat 2", 200, 850, 150, 50, colors.snow, colors.brigth_snow, None)
             functions.button("boat 3", 200, 900, 150, 50, colors.snow, colors.brigth_snow, None)
             functions.button("boat 4", 200, 950, 150, 50, colors.snow, colors.brigth_snow, None)
 
     def attack1(self):
-        if self.attack1_def == True:
+        if self.thing == 3:
             functions.button("boat 1", 200, 800, 150, 50, colors.yellow, colors.brigth_yellow, None)
             functions.button("boat 2", 200, 850, 150, 50, colors.yellow, colors.brigth_yellow, None)
             functions.button("boat 3", 200, 900, 150, 50, colors.yellow, colors.brigth_yellow, None)
             functions.button("boat 4", 200, 950, 150, 50, colors.yellow, colors.brigth_yellow, None)
 
     def move_boat2(self):
-        self.move2_def = True
-        self.turn2_def = False
-        self.attack2_def = False
+        self.thing = 4
         self.boat_move = 0
         self.base_color()
 
     def turn_boat2(self):
-        self.move2_def = False
-        self.turn2_def = True
-        self.attack2_def = False
+        self.thing = 5
         self.boat_move = 0
         self.base_color()
 
     def attack_boat2(self):
-        self.move2_def = False
-        self.turn2_def = False
-        self.attack2_def = True
+        self.thing = 6
         self.boat_move = 0
         self.base_color()
 
     def move2(self):
-        if self.move2_def == True:
+        if self.thing == 4:
             functions.button("boat 1", 1550, 800, 150, 50, colors.green, colors.brigth_green, self.movemove2)
             functions.button("boat 2", 1550, 850, 150, 50, colors.green, colors.brigth_green, self.movemove4)
             functions.button("boat 3", 1550, 900, 150, 50, colors.green, colors.brigth_green, self.movemove6)
             functions.button("boat 4", 1550, 950, 150, 50, colors.green, colors.brigth_green, self.movemove8)
 
     def turn2(self):
-        if self.turn2_def == True:
+        if self.thing == 5:
             functions.button("boat 1", 1550, 800, 150, 50, colors.snow, colors.brigth_snow, None)
             functions.button("boat 2", 1550, 850, 150, 50, colors.snow, colors.brigth_snow, None)
             functions.button("boat 3", 1550, 900, 150, 50, colors.snow, colors.brigth_snow, None)
             functions.button("boat 4", 1550, 950, 150, 50, colors.snow, colors.brigth_snow, None)
 
     def attack2(self):
-        if self.attack2_def == True:
+        if self.thing == 6:
             functions.button("boat 1", 1550, 800, 150, 50, colors.yellow, colors.brigth_yellow, None)
             functions.button("boat 2", 1550, 850, 150, 50, colors.yellow, colors.brigth_yellow, None)
             functions.button("boat 3", 1550, 900, 150, 50, colors.yellow, colors.brigth_yellow, None)
@@ -374,7 +364,7 @@ class Player():
         self.base_color()
 
     def moveboat(self):
-        if self.boat_move == 1:
+        if self.boat_move == 1 and self.boat1.defense == False:
             self.boat1.c = colors.brigth_red
             if self.boat1.moves != 0:
                 keys = pygame.key.get_pressed()
@@ -406,7 +396,7 @@ class Player():
                         self.boat1.y += 45
                         self.boat1.moves +=1
                     time.sleep(0.2)
-        elif self.boat_move == 2:
+        elif self.boat_move == 2 and self.boat2.defense == False:
             self.boat2.c = colors.brigth_blue
             if self.boat2.moves != 0:
                 keys = pygame.key.get_pressed()
@@ -438,7 +428,7 @@ class Player():
                         self.boat2.y += 45
                         self.boat2.moves +=1
                     time.sleep(0.2)
-        elif self.boat_move == 3:
+        elif self.boat_move == 3 and self.boat3.defense == False:
             self.boat3.c = colors.brigth_red
             if self.boat3.moves != 0:
                 keys = pygame.key.get_pressed()
@@ -470,7 +460,7 @@ class Player():
                         self.boat3.y += 45
                         self.boat3.moves +=1
                     time.sleep(0.2)
-        elif self.boat_move == 4:
+        elif self.boat_move == 4 and self.boat4.defense == False:
             self.boat4.c = colors.brigth_blue
             if self.boat4.moves != 0:
                 keys = pygame.key.get_pressed()
@@ -502,7 +492,7 @@ class Player():
                         self.boat4.y += 45
                         self.boat4.moves +=1
                     time.sleep(0.2)
-        elif self.boat_move == 5:
+        elif self.boat_move == 5 and self.boat5.defense == False:
             self.boat5.c = colors.brigth_red
             if self.boat5.moves != 0:
                 keys = pygame.key.get_pressed()
@@ -534,7 +524,7 @@ class Player():
                         self.boat5.y += 45
                         self.boat5.moves +=1
                     time.sleep(0.2)
-        elif self.boat_move == 6:
+        elif self.boat_move == 6 and self.boat6.defense == False:
             self.boat6.c = colors.brigth_blue
             if self.boat6.moves != 0:
                 keys = pygame.key.get_pressed()
@@ -566,7 +556,7 @@ class Player():
                         self.boat6.y += 45
                         self.boat6.moves +=1
                     time.sleep(0.2)
-        elif self.boat_move == 7:
+        elif self.boat_move == 7 and self.boat7.defense == False:
             self.boat7.c = colors.brigth_red
             if self.boat7.moves != 0:
                 keys = pygame.key.get_pressed()
@@ -598,7 +588,7 @@ class Player():
                         self.boat7.y += 45
                         self.boat7.moves +=1
                     time.sleep(0.2)
-        elif self.boat_move == 8:
+        elif self.boat_move == 8 and self.boat8.defense == False:
             self.boat8.c = colors.brigth_blue
             if self.boat8.moves != 0:
                 keys = pygame.key.get_pressed()
