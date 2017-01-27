@@ -66,14 +66,7 @@ class Player():
         self.turn2_def = False
         self.attack2_def = False
 
-        self.boat1_move = False
-        self.boat2_move = False
-        self.boat3_move = False
-        self.boat4_move = False
-        self.boat5_move = False
-        self.boat6_move = False
-        self.boat7_move = False
-        self.boat8_move = False
+        self.boat_move = 0
 
     def turn(self):
         if self.player1_turn == False:
@@ -99,10 +92,7 @@ class Player():
         self.move1_def = False
         self.turn1_def = False
         self.attack1_def = False
-        self.boat1_move = False
-        self.boat3_move = False
-        self.boat5_move = False
-        self.boat7_move = False
+        self.boat_move = 0
         self.boat1.c = colors.red
         self.boat3.c = colors.red
         self.boat5.c = colors.red
@@ -122,10 +112,7 @@ class Player():
         self.move2_def = False
         self.turn2_def = False
         self.attack2_def = False
-        self.boat2_move = False
-        self.boat4_move = False
-        self.boat6_move = False
-        self.boat8_move = False
+        self.boat_move = 0
         self.boat2.c = colors.blue
         self.boat4.c = colors.blue
         self.boat6.c = colors.blue
@@ -270,10 +257,7 @@ class Player():
         self.move1_def = True
         self.turn1_def = False
         self.attack1_def = False
-        self.boat1_move = False
-        self.boat3_move = False
-        self.boat5_move = False
-        self.boat7_move = False
+        self.boat_move = 0
         self.boat1.c = colors.red
         self.boat3.c = colors.red
         self.boat5.c = colors.red
@@ -283,10 +267,7 @@ class Player():
         self.move1_def = False
         self.turn1_def = True
         self.attack1_def = False
-        self.boat1_move = False
-        self.boat3_move = False
-        self.boat5_move = False
-        self.boat7_move = False
+        self.boat_move = 0
         self.boat1.c = colors.red
         self.boat3.c = colors.red
         self.boat5.c = colors.red
@@ -296,10 +277,7 @@ class Player():
         self.move1_def = False
         self.turn1_def = False
         self.attack1_def = True
-        self.boat1_move = False
-        self.boat3_move = False
-        self.boat5_move = False
-        self.boat7_move = False
+        self.boat_move = 0
         self.boat1.c = colors.red
         self.boat3.c = colors.red
         self.boat5.c = colors.red
@@ -330,10 +308,7 @@ class Player():
         self.move2_def = True
         self.turn2_def = False
         self.attack2_def = False
-        self.boat2_move = False
-        self.boat4_move = False
-        self.boat6_move = False
-        self.boat8_move = False
+        self.boat_move = 0
         self.boat2.c = colors.blue
         self.boat4.c = colors.blue
         self.boat6.c = colors.blue
@@ -343,10 +318,7 @@ class Player():
         self.move2_def = False
         self.turn2_def = True
         self.attack2_def = False
-        self.boat2_move = False
-        self.boat4_move = False
-        self.boat6_move = False
-        self.boat8_move = False
+        self.boat_move = 0
         self.boat2.c = colors.blue
         self.boat4.c = colors.blue
         self.boat6.c = colors.blue
@@ -356,10 +328,7 @@ class Player():
         self.move2_def = False
         self.turn2_def = False
         self.attack2_def = True
-        self.boat2_move = False
-        self.boat4_move = False
-        self.boat6_move = False
-        self.boat8_move = False
+        self.boat_move = 0
         self.boat2.c = colors.blue
         self.boat4.c = colors.blue
         self.boat6.c = colors.blue
@@ -387,47 +356,35 @@ class Player():
             functions.button("boat 4", 1550, 950, 150, 50, colors.yellow, colors.brigth_yellow, None)
 
     def movemove1(self):
-        self.boat1_move = True
-        self.boat3_move = False
-        self.boat5_move = False
-        self.boat7_move = False
+        self.boat_move = 1
         self.boat1.c = colors.red
         self.boat3.c = colors.red
         self.boat5.c = colors.red
         self.boat7.c = colors.red
 
     def movemove3(self):
-        self.boat1_move = False
-        self.boat3_move = True
-        self.boat5_move = False
-        self.boat7_move = False
+        self.boat_move = 3
         self.boat1.c = colors.red
         self.boat3.c = colors.red
         self.boat5.c = colors.red
         self.boat7.c = colors.red
 
     def movemove5(self):
-        self.boat1_move = False
-        self.boat3_move = False
-        self.boat5_move = True
-        self.boat7_move = False
+        self.boat_move = 5
         self.boat1.c = colors.red
         self.boat3.c = colors.red
         self.boat5.c = colors.red
         self.boat7.c = colors.red
 
     def movemove7(self):
-        self.boat1_move = False
-        self.boat3_move = False
-        self.boat5_move = False
-        self.boat7_move = True
+        self.boat_move = 7
         self.boat1.c = colors.red
         self.boat3.c = colors.red
         self.boat5.c = colors.red
         self.boat7.c = colors.red
 
     def moveboat1(self):
-        if self.boat1_move == True:
+        if self.boat_move == 1:
             self.boat1.c = colors.brigth_red
             if self.boat1.moves != 0:
                 keys = pygame.key.get_pressed()
@@ -461,7 +418,7 @@ class Player():
                     time.sleep(0.2)
 
     def moveboat3(self):
-        if self.boat3_move == True:
+        if self.boat_move == 3:
             self.boat3.c = colors.brigth_red
             if self.boat3.moves != 0:
                 keys = pygame.key.get_pressed()
@@ -495,7 +452,7 @@ class Player():
                     time.sleep(0.2)
 
     def moveboat5(self):
-        if self.boat5_move == True:
+        if self.boat_move == 5:
             self.boat5.c = colors.brigth_red
             if self.boat5.moves != 0:
                 keys = pygame.key.get_pressed()
@@ -529,7 +486,7 @@ class Player():
                     time.sleep(0.2)
 
     def moveboat7(self):
-        if self.boat7_move == True:
+        if self.boat_move == 7:
             self.boat7.c = colors.brigth_red
             if self.boat7.moves != 0:
                 keys = pygame.key.get_pressed()
@@ -563,49 +520,37 @@ class Player():
                     time.sleep(0.2)
 
     def movemove2(self):
-        self.boat2_move = True
-        self.boat4_move = False
-        self.boat6_move = False
-        self.boat8_move = False
+        self.boat_move = 2
         self.boat2.c = colors.blue
         self.boat4.c = colors.blue
         self.boat6.c = colors.blue
         self.boat8.c = colors.blue
 
     def movemove4(self):
-        self.boat2_move = False
-        self.boat4_move = True
-        self.boat6_move = False
-        self.boat8_move = False
+        self.boat_move = 4
         self.boat2.c = colors.blue
         self.boat4.c = colors.blue
         self.boat6.c = colors.blue
         self.boat8.c = colors.blue
 
     def movemove6(self):
-        self.boat2_move = False
-        self.boat4_move = False
-        self.boat6_move = True
-        self.boat8_move = False
+        self.boat_move = 6
         self.boat2.c = colors.blue
         self.boat4.c = colors.blue
         self.boat6.c = colors.blue
         self.boat8.c = colors.blue
 
     def movemove8(self):
-        self.boat2_move = False
-        self.boat4_move = False
-        self.boat6_move = False
-        self.boat8_move = True
+        self.boat_move = 8
         self.boat2.c = colors.blue
         self.boat4.c = colors.blue
         self.boat6.c = colors.blue
         self.boat8.c = colors.blue
 
     def moveboat2(self):
-        if self.boat2_move == True:
+        if self.boat_move == 2:
             self.boat2.c = colors.brigth_blue
-            if self.boat1.moves != 0:
+            if self.boat2.moves != 0:
                 keys = pygame.key.get_pressed()
                 if keys[pygame.K_a]:
                     self.boat2.x -= 45
@@ -637,7 +582,7 @@ class Player():
                     time.sleep(0.2)
 
     def moveboat4(self):
-        if self.boat4_move == True:
+        if self.boat_move == 4:
             self.boat4.c = colors.brigth_blue
             if self.boat4.moves != 0:
                 keys = pygame.key.get_pressed()
@@ -671,7 +616,7 @@ class Player():
                     time.sleep(0.2)
 
     def moveboat6(self):
-        if self.boat6_move == True:
+        if self.boat_move == 6:
             self.boat6.c = colors.brigth_blue
             if self.boat6.moves != 0:
                 keys = pygame.key.get_pressed()
@@ -705,7 +650,7 @@ class Player():
                     time.sleep(0.2)
 
     def moveboat8(self):
-        if self.boat8_move == True:
+        if self.boat_move == 8:
             self.boat8.c = colors.brigth_blue
             if self.boat8.moves != 0:
                 keys = pygame.key.get_pressed()
