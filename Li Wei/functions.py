@@ -1,11 +1,14 @@
 import pygame
 import time
 import colors
+from pygame.locals import *
+
 
 screen_width = 800
 screen_height = 600
 size = (screen_width, screen_height)
 screen = pygame.display.set_mode(size)
+
 
 def text_objects(text, font, color,):
     textSurface = font.render(text, True, color)
@@ -20,7 +23,6 @@ def text(font,size, word, x, y, color):
 def button(msg,x,y,w,h,ic,ac,action=None):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
-    print (mouse)
     if x+w > mouse[0] > x and y+h > mouse[1] > y:
         pygame.draw.rect(screen, ac,(x,y,w,h))
 
@@ -40,4 +42,5 @@ def game():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
+
 
