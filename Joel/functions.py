@@ -17,10 +17,11 @@ def text(font,size, word, x, y, color):
     textRect.center = (x), (y)
     screen.blit(textSurf, textRect)
 
+
 def button(msg,x,y,w,h,ic,ac,action=None):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
-    print (mouse)
+    print(mouse)
     if x+w > mouse[0] > x and y+h > mouse[1] > y:
         pygame.draw.rect(screen, ac,(x,y,w,h))
 
