@@ -256,41 +256,33 @@ class Player():
 
     def draw(self):
         if self.boat1_draw == True:
-            if self.boat1.health != 0:
-                self.boat1.draw()   
-                self.boat1_width_1 = self.boat1.x
-                self.boat1_width_2 = (self.boat1.x + 45)
+            self.boat1.draw()   
+            self.boat1_width_1 = self.boat1.x
+            self.boat1_width_2 = (self.boat1.x + 45)
         if self.boat2_draw == True:
-            if self.boat2.health != 0:
-                self.boat2.draw()
-                self.boat2_width_1 = self.boat2.x
-                self.boat2_width_2 = (self.boat2.x + 45)
+            self.boat2.draw()
+            self.boat2_width_1 = self.boat2.x
+            self.boat2_width_2 = (self.boat2.x + 45)
         if self.boat3_draw == True:
-            if self.boat3.health != 0:
-                self.boat3.draw()
-                self.boat3_width_1 = self.boat3.x
-                self.boat3_width_2 = (self.boat3.x + 45)
+            self.boat3.draw()
+            self.boat3_width_1 = self.boat3.x
+            self.boat3_width_2 = (self.boat3.x + 45)
         if self.boat4_draw == True:
-            if self.boat4.health != 0:
-                self.boat4.draw()
-                self.boat4_width_1 = self.boat4.x
-                self.boat4_width_2 = (self.boat4.x + 45)
+            self.boat4.draw()
+            self.boat4_width_1 = self.boat4.x
+            self.boat4_width_2 = (self.boat4.x + 45)
         if self.boat5_draw == True:
-            if self.boat5.health != 0:
-                self.boat5.draw()
-                self.boat5_width_1 = self.boat5.x
-                self.boat5_width_2 = (self.boat5.x + 45)
+            self.boat5.draw()
+            self.boat5_width_1 = self.boat5.x
+            self.boat5_width_2 = (self.boat5.x + 45)
         if self.boat6_draw == True:
-            if self.boat6.health != 0:
-                self.boat6.draw()
-                self.boat6_width_1 = self.boat6.x
-                self.boat6_width_2 = (self.boat6.x + 45)
+            self.boat6.draw()
+            self.boat6_width_1 = self.boat6.x
+            self.boat6_width_2 = (self.boat6.x + 45)
         if self.boat7_draw == True:
-            if self.boat7.health != 0:
-                self.boat7.draw()
+            self.boat7.draw()
         if self.boat8_draw == True:
-            if self.boat8.health != 0:
-                self.boat8.draw()
+            self.boat8.draw()
 
     def move_boat1(self):
         self.thing = 1
