@@ -44,3 +44,6 @@ def game():
 def quitgame():
     pygame.quit()
     quit()
+
+def contains(rect, point):
+    return point.x > rect.x and point.x < rect.x + rect.w and point.y > rect.y and point.y > rect.y + rect.h
