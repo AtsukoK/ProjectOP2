@@ -186,7 +186,7 @@ def highscores():
 def game_rules_1_pause():
     while not functions.game():
         screen.fill(colors.white)
-        functions.button("back", 0, 0, 150, 50, colors.snow, colors.bright_snow, intro)
+        functions.button("back", 0, 0, 150, 50, colors.snow, colors.bright_snow, main_game)
         screen.blit(images.instruction_img_1, (screen_width * 0.25,0))
         functions.button("next", 650, 550, 150, 50, colors.snow, colors.bright_snow, game_rules_2)
         pygame.display.flip()
@@ -194,7 +194,7 @@ def game_rules_1_pause():
 def game_rules_2_pause():
     while not functions.game():
         screen.fill(colors.white)
-        functions.button("back", 0, 0, 150, 50, colors.snow, colors.bright_snow, intro)
+        functions.button("back", 0, 0, 150, 50, colors.snow, colors.bright_snow, main_game)
         screen.blit(images.instruction_img_2, (screen_width * 0.25,0))
         functions.button("previous", 0, 550, 150, 50, colors.snow, colors.bright_snow, game_rules_1)
         functions.button("next", 650, 550, 150, 50, colors.snow, colors.bright_snow, game_rules_3)
@@ -203,7 +203,7 @@ def game_rules_2_pause():
 def game_rules_3_pause():
     while not functions.game():
         screen.fill(colors.white)
-        functions.button("back", 0, 0, 150, 50, colors.snow, colors.bright_snow, intro)
+        functions.button("back", 0, 0, 150, 50, colors.snow, colors.bright_snow, main_game)
         screen.blit(images.instruction_img_3, (screen_width * 0.25,0))
         functions.button("previous", 0, 550, 150, 50, colors.snow, colors.bright_snow, game_rules_2)
         functions.button("next", 650, 550, 150, 50, colors.snow, colors.bright_snow, game_rules_4)
@@ -212,7 +212,7 @@ def game_rules_3_pause():
 def game_rules_4_pause():
     while not functions.game():
         screen.fill(colors.white)
-        functions.button("back", 0, 0, 150, 50, colors.snow, colors.bright_snow, intro)
+        functions.button("back", 0, 0, 150, 50, colors.snow, colors.bright_snow, main_game)
         screen.blit(images.instruction_img_4, (screen_width * 0.25,0))
         functions.button("previous", 0, 550, 150, 50, colors.snow, colors.bright_snow, game_rules_3)
         functions.button("next", 650, 550, 150, 50, colors.snow, colors.bright_snow, game_rules_5)
@@ -221,7 +221,7 @@ def game_rules_4_pause():
 def game_rules_5_pause():
     while not functions.game():
         screen.fill(colors.white)
-        functions.button("back", 0, 0, 150, 50, colors.snow, colors.bright_snow, intro)
+        functions.button("back", 0, 0, 150, 50, colors.snow, colors.bright_snow, main_game)
         screen.blit(images.instruction_img_5, (screen_width * 0.25,0))
         functions.button("previous", 0, 550, 150, 50, colors.snow, colors.bright_snow, game_rules_4)
         functions.button("next", 650, 550, 150, 50, colors.snow, colors.bright_snow, game_rules_6)
@@ -230,7 +230,7 @@ def game_rules_5_pause():
 def game_rules_6_pause():
     while not functions.game():
         screen.fill(colors.white)
-        functions.button("back", 0, 0, 150, 50, colors.snow, colors.bright_snow, intro)
+        functions.button("back", 0, 0, 150, 50, colors.snow, colors.bright_snow, main_game)
         screen.blit(images.instruction_img_6, (screen_width * 0.25,0))
         functions.button("previous", 0, 550, 150, 50, colors.snow, colors.bright_snow, game_rules_5)
         pygame.display.flip()
