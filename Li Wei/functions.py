@@ -1,7 +1,6 @@
 import pygame
 import time
 import colors
-from pygame.locals import *
 
 
 screen_width = 800
