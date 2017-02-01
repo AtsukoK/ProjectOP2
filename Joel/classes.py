@@ -75,14 +75,38 @@ class Player():
         self.thing = 0
 
     def base_color(self):
-        self.boat1.c = colors.red
-        self.boat3.c = colors.red
-        self.boat5.c = colors.red
-        self.boat7.c = colors.red
-        self.boat2.c = colors.blue
-        self.boat4.c = colors.blue
-        self.boat6.c = colors.blue
-        self.boat8.c = colors.blue
+        if self.boat1.health != 0:
+            self.boat1.c = colors.red
+        else:
+            self.boat1.c = colors.black
+        if self.boat3.health != 0:
+            self.boat3.c = colors.red
+        else:
+            self.boat3.c = colors.black
+        if self.boat5.health != 0:
+            self.boat5.c = colors.red
+        else:
+            self.boat5.c = colors.black
+        if self.boat7.health != 0:
+            self.boat7.c = colors.red
+        else:
+            self.boat7.c = colors.black
+        if self.boat2.health != 0:
+            self.boat2.c = colors.blue
+        else:
+            self.boat2.c = colors.black
+        if self.boat4.health != 0:
+            self.boat4.c = colors.blue
+        else:
+            self.boat4.c = colors.black
+        if self.boat6.health != 0:
+            self.boat6.c = colors.blue
+        else:
+            self.boat6.c = colors.black
+        if self.boat8.health != 0:
+            self.boat8.c = colors.blue
+        else:
+            self.boat8.c = colors.black
 
     def turn(self):
         if self.player1_turn == False:
@@ -97,14 +121,18 @@ class Player():
     def name1(self):
         self.player1_turn = False
         self.player2_turn = True
-        self.boat1.moves = 3
-        self.boat3.moves = 2
-        self.boat5.moves = 2
-        self.boat7.moves = 1
-        self.boat1.attack = 1
-        self.boat3.attack = 1
-        self.boat5.attack = 1
-        self.boat7.attack = 1
+        if self.boat1.health != 0:
+            self.boat1.moves = 3
+            self.boat1.attack = 1
+        if self.boat3.health != 0:
+            self.boat3.moves = 2
+            self.boat3.attack = 1
+        if self.boat5.health != 0:
+            self.boat5.moves = 2
+            self.boat5.attack = 1
+        if self.boat7.health != 0:
+            self.boat7.moves = 1
+            self.boat7.attack = 1
         self.boat_move = 0
         self.boat_turn = 0
         self.boat_attack = 0
@@ -115,14 +143,18 @@ class Player():
     def name2(self):
         self.player2_turn = False
         self.player1_turn = True
-        self.boat2.moves = 3
-        self.boat4.moves = 2
-        self.boat6.moves = 2
-        self.boat8.moves = 1
-        self.boat2.attack = 1
-        self.boat4.attack = 1
-        self.boat6.attack = 1
-        self.boat8.attack = 1
+        if self.boat2.health != 0:
+            self.boat2.moves = 3
+            self.boat2.attack = 1
+        if self.boat4.health != 0:
+            self.boat4.moves = 2
+            self.boat4.attack = 1
+        if self.boat6.health != 0:
+            self.boat6.moves = 2
+            self.boat6.attack = 1
+        if self.boat8.health != 0:
+            self.boat8.moves = 1
+            self.boat8.attack = 1
         self.boat_turn = 0
         self.boat_move = 0
         self.boat_attack = 0
