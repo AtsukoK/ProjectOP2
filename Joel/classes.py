@@ -1406,6 +1406,130 @@ class Player():
                     self.player_attack -= 1    
 
 
+            elif self.boat_attack == 3 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat1.defense == False and self.boat1.health != 0 or self.boat_attack == 4 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat1.defense == False and self.boat1.health != 0:
+                if x+44 > self.boat1.x + 22 > x and y+44 > self.boat1.y + 22 > y or x+44 > self.boat1.x + 22 > x and y+44 > self.boat1.y + 67 > y:
+                    self.boat1.health -= 1
+                    self.boat2.attack -= 1
+                    self.player_attack -= 1
+            elif self.boat_attack == 3 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat1.defense == True and self.boat1.health != 0 or self.boat_attack == 4 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat1.defense == True and self.boat1.health != 0:
+                if x+44 > self.boat1.x + 22 > x and y+44 > self.boat1.y + 22 > y or x+44 > self.boat1.x + 67 > x and y+44 > self.boat1.y > y:
+                    self.boat1.health -= 1
+                    self.boat2.attack -= 1
+                    self.player_attack -= 1
+            elif self.boat_attack == 3 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat3.defense == False and self.boat3.health != 0 or self.boat_attack == 4 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat3.defense == False and self.boat3.health != 0:
+                if x+44 > self.boat3.x + 22 > x and y+44 > self.boat3.y + 22 > y or x+44 > self.boat3.x + 22 > x and y+44 > self.boat3.y + 67 > y or x+44 > self.boat3.x + 22 > x and y+44 > self.boat3.y + 112 > y:
+                    self.boat3.health -= 1
+                    self.boat2.attack -= 1
+                    self.player_attack -= 1
+            elif self.boat_attack == 3 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat3.defense == True and self.boat3.health != 0 or self.boat_attack == 4 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat3.defense == True and self.boat3.health != 0:
+                if x+44 > self.boat3.x + 22 > x and y+44 > self.boat3.y + 22 > y or x+44 > self.boat3.x + 67 > x and y+44 > self.boat3.y > y or x+44 > self.boat3.x + 112 > x and y+44 > self.boat3.y > y:
+                    self.boat3.health -= 1
+                    self.boat2.attack -= 1
+                    self.player_attack -= 1
+            elif self.boat_attack == 3 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat5.defense == False and self.boat5.health != 0 or self.boat_attack == 4 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat5.defense == False and self.boat5.health != 0:
+                if x+44 > self.boat5.x + 22 > x and y+44 > self.boat5.y + 22 > y or x+44 > self.boat5.x + 22 > x and y+44 > self.boat5.y + 67 > y or x+44 > self.boat5.x + 22 > x and y+44 > self.boat5.y + 112 > y:
+                    self.boat5.health -= 1
+                    self.boat2.attack -= 1
+                    self.player_attack -= 1
+            elif self.boat_attack == 3 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat5.defense == True and self.boat5.health != 0 or self.boat_attack == 4 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat5.defense == True and self.boat5.health != 0:
+                if x+44 > self.boat5.x + 22 > x and y+44 > self.boat5.y + 22 > y or x+44 > self.boat5.x + 67 > x and y+44 > self.boat5.y > y or x+44 > self.boat5.x + 112 > x and y+44 > self.boat5.y > y:
+                    self.boat5.health -= 1
+                    self.boat2.attack -= 1
+                    self.player_attack -= 1
+            elif self.boat_attack == 3 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat7.defense == False and self.boat7.health != 0 or self.boat_attack == 4 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat7.defense == False and self.boat7.health != 0:
+                if x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 22 > y or x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 67 > y or x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 112 > y or x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 157 > y:
+                    self.boat7.health -= 1
+                    self.boat2.attack -= 1
+                    self.player_attack -= 1
+            elif self.boat_attack == 3 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat7.defense == True and self.boat7.health != 0 or self.boat_attack == 4 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat7.defense == True and self.boat7.health != 0:
+                if x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 22 > y or x+44 > self.boat7.x + 67 > x and y+44 > self.boat7.y > y or x+44 > self.boat7.x + 112 > x and y+44 > self.boat7.y > y or x+44 > self.boat7.x + 157 > x and y+44 > self.boat7.y > y:
+                    self.boat7.health -= 1
+                    self.boat2.attack -= 1
+                    self.player_attack -= 1    
+
+            elif self.boat_attack == 7 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat1.defense == False and self.boat1.health != 0 or self.boat_attack == 8 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat1.defense == False and self.boat1.health != 0:
+                if x+44 > self.boat1.x + 22 > x and y+44 > self.boat1.y + 22 > y or x+44 > self.boat1.x + 22 > x and y+44 > self.boat1.y + 67 > y:
+                    self.boat1.health -= 1
+                    self.boat4.attack -= 1
+                    self.player_attack -= 1
+            elif self.boat_attack == 7 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat1.defense == True and self.boat1.health != 0 or self.boat_attack == 8 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat1.defense == True and self.boat1.health != 0:
+                if x+44 > self.boat1.x + 22 > x and y+44 > self.boat1.y + 22 > y or x+44 > self.boat1.x + 67 > x and y+44 > self.boat1.y > y:
+                    self.boat1.health -= 1
+                    self.boat4.attack -= 1
+                    self.player_attack -= 1
+            elif self.boat_attack == 7 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat3.defense == False and self.boat3.health != 0 or self.boat_attack == 8 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat3.defense == False and self.boat3.health != 0:
+                if x+44 > self.boat3.x + 22 > x and y+44 > self.boat3.y + 22 > y or x+44 > self.boat3.x + 22 > x and y+44 > self.boat3.y + 67 > y or x+44 > self.boat3.x + 22 > x and y+44 > self.boat3.y + 112 > y:
+                    self.boat3.health -= 1
+                    self.boat4.attack -= 1
+                    self.player_attack -= 1
+            elif self.boat_attack == 7 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat3.defense == True and self.boat3.health != 0 or self.boat_attack == 8 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat3.defense == True and self.boat3.health != 0:
+                if x+44 > self.boat3.x + 22 > x and y+44 > self.boat3.y + 22 > y or x+44 > self.boat3.x + 67 > x and y+44 > self.boat3.y > y or x+44 > self.boat3.x + 112 > x and y+44 > self.boat3.y > y:
+                    self.boat3.health -= 1
+                    self.boat4.attack -= 1
+                    self.player_attack -= 1
+            elif self.boat_attack == 7 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat5.defense == False and self.boat5.health != 0 or self.boat_attack == 8 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat5.defense == False and self.boat5.health != 0:
+                if x+44 > self.boat5.x + 22 > x and y+44 > self.boat5.y + 22 > y or x+44 > self.boat5.x + 22 > x and y+44 > self.boat5.y + 67 > y or x+44 > self.boat5.x + 22 > x and y+44 > self.boat5.y + 112 > y:
+                    self.boat5.health -= 1
+                    self.boat4.attack -= 1
+                    self.player_attack -= 1
+            elif self.boat_attack == 7 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat5.defense == True and self.boat5.health != 0 or self.boat_attack == 8 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat5.defense == True and self.boat5.health != 0:
+                if x+44 > self.boat5.x + 22 > x and y+44 > self.boat5.y + 22 > y or x+44 > self.boat5.x + 67 > x and y+44 > self.boat5.y > y or x+44 > self.boat5.x + 112 > x and y+44 > self.boat5.y > y:
+                    self.boat5.health -= 1
+                    self.boat4.attack -= 1
+                    self.player_attack -= 1
+            elif self.boat_attack == 7 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat7.defense == False and self.boat7.health != 0 or self.boat_attack == 8 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat7.defense == False and self.boat7.health != 0:
+                if x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 22 > y or x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 67 > y or x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 112 > y or x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 157 > y:
+                    self.boat7.health -= 1
+                    self.boat4.attack -= 1
+                    self.player_attack -= 1
+            elif self.boat_attack == 7 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat7.defense == True and self.boat7.health != 0 or self.boat_attack == 8 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat7.defense == True and self.boat7.health != 0:
+                if x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 22 > y or x+44 > self.boat7.x + 67 > x and y+44 > self.boat7.y > y or x+44 > self.boat7.x + 112 > x and y+44 > self.boat7.y > y or x+44 > self.boat7.x + 157 > x and y+44 > self.boat7.y > y:
+                    self.boat7.health -= 1
+                    self.boat4.attack -= 1
+                    self.player_attack -= 1    
+
+            elif self.boat_attack == 11 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat1.defense == False and self.boat1.health != 0 or self.boat_attack == 12 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat1.defense == False and self.boat1.health != 0:
+                if x+44 > self.boat1.x + 22 > x and y+44 > self.boat1.y + 22 > y or x+44 > self.boat1.x + 22 > x and y+44 > self.boat1.y + 67 > y:
+                    self.boat1.health -= 1
+                    self.boat6.attack -= 1
+                    self.player_attack -= 1
+            elif self.boat_attack == 11 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat1.defense == True and self.boat1.health != 0 or self.boat_attack == 12 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat1.defense == True and self.boat1.health != 0:
+                if x+44 > self.boat1.x + 22 > x and y+44 > self.boat1.y + 22 > y or x+44 > self.boat1.x + 67 > x and y+44 > self.boat1.y > y:
+                    self.boat1.health -= 1
+                    self.boat6.attack -= 1
+                    self.player_attack -= 1
+            elif self.boat_attack == 11 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat3.defense == False and self.boat3.health != 0 or self.boat_attack == 12 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat3.defense == False and self.boat3.health != 0:
+                if x+44 > self.boat3.x + 22 > x and y+44 > self.boat3.y + 22 > y or x+44 > self.boat3.x + 22 > x and y+44 > self.boat3.y + 67 > y or x+44 > self.boat3.x + 22 > x and y+44 > self.boat3.y + 112 > y:
+                    self.boat3.health -= 1
+                    self.boat6.attack -= 1
+                    self.player_attack -= 1
+            elif self.boat_attack == 11 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat3.defense == True and self.boat3.health != 0 or self.boat_attack == 12 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat3.defense == True and self.boat3.health != 0:
+                if x+44 > self.boat3.x + 22 > x and y+44 > self.boat3.y + 22 > y or x+44 > self.boat3.x + 67 > x and y+44 > self.boat3.y > y or x+44 > self.boat3.x + 112 > x and y+44 > self.boat3.y > y:
+                    self.boat3.health -= 1
+                    self.boat6.attack -= 1
+                    self.player_attack -= 1
+            elif self.boat_attack == 11 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat5.defense == False and self.boat5.health != 0 or self.boat_attack == 12 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat5.defense == False and self.boat5.health != 0:
+                if x+44 > self.boat5.x + 22 > x and y+44 > self.boat5.y + 22 > y or x+44 > self.boat5.x + 22 > x and y+44 > self.boat5.y + 67 > y or x+44 > self.boat5.x + 22 > x and y+44 > self.boat5.y + 112 > y:
+                    self.boat5.health -= 1
+                    self.boat6.attack -= 1
+                    self.player_attack -= 1
+            elif self.boat_attack == 11 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat5.defense == True and self.boat5.health != 0 or self.boat_attack == 12 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat5.defense == True and self.boat5.health != 0:
+                if x+44 > self.boat5.x + 22 > x and y+44 > self.boat5.y + 22 > y or x+44 > self.boat5.x + 67 > x and y+44 > self.boat5.y > y or x+44 > self.boat5.x + 112 > x and y+44 > self.boat5.y > y:
+                    self.boat5.health -= 1
+                    self.boat6.attack -= 1
+                    self.player_attack -= 1
+            elif self.boat_attack == 11 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat7.defense == False and self.boat7.health != 0 or self.boat_attack == 12 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat7.defense == False and self.boat7.health != 0:
+                if x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 22 > y or x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 67 > y or x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 112 > y or x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 157 > y:
+                    self.boat7.health -= 1
+                    self.boat6.attack -= 1
+                    self.player_attack -= 1
+            elif self.boat_attack == 11 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat7.defense == True and self.boat7.health != 0 or self.boat_attack == 12 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat7.defense == True and self.boat7.health != 0:
+                if x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 22 > y or x+44 > self.boat7.x + 67 > x and y+44 > self.boat7.y > y or x+44 > self.boat7.x + 112 > x and y+44 > self.boat7.y > y or x+44 > self.boat7.x + 157 > x and y+44 > self.boat7.y > y:
+                    self.boat7.health -= 1
+                    self.boat6.attack -= 1
+                    self.player_attack -= 1    
+
+
 class Boat(Player):
     def __init__(self, c, x, y, w, h, health, moves):
         self.c = c
