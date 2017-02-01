@@ -1,7 +1,5 @@
 import psycopg2
 import pygame
-import colors
-import functions
 
 screen_width = 800
 screen_height = 600
@@ -46,3 +44,4 @@ def upload_leaderboards(name, wins, losses):
 def download_leaderboads():
     names_leaderboard = interact_with_database("SELECT name, wins FROM leaderboards ")
     return names_leaderboard
+
