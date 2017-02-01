@@ -3,8 +3,8 @@ import colors
 import time
 
 screen_width = 1920
-screen_heigt = 1080
-size = (screen_width, screen_heigt)
+screen_height = 1080
+size = (screen_width, screen_height)
 screen = pygame.display.set_mode(size)
 
 def text_objects(text, font, color):

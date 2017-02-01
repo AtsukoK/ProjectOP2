@@ -28,6 +28,7 @@
     <Compile Include="colors.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="database.py" />
     <Compile Include="functions.py">
       <SubType>Code</SubType>
     </Compile>
