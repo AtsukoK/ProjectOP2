@@ -314,6 +314,39 @@ class Player():
             self.boat7.draw()
         if self.boat8_draw == True:
             self.boat8.draw()
+            if self.boat1.health == 0:
+                self.boat1.moves = 0
+                self.boat1.attack = 0
+                self.boat1.c = colors.black
+            if self.boat2.health == 0:
+                self.boat2.moves = 0
+                self.boat2.attack = 0
+                self.boat2.c = colors.black
+            if self.boat3.health == 0:
+                self.boat3.moves = 0
+                self.boat3.attack = 0
+                self.boat3.c = colors.black
+            if self.boat4.health == 0:
+                self.boat4.moves = 0
+                self.boat4.attack = 0
+                self.boat4.c = colors.black
+            if self.boat5.health == 0:
+                self.boat5.moves = 0
+                self.boat5.attack = 0
+                self.boat5.c = colors.black
+            if self.boat6.health == 0:
+                self.boat6.moves = 0
+                self.boat6.attack = 0
+                self.boat6.c = colors.black
+            if self.boat7.health == 0:
+                self.boat7.moves = 0
+                self.boat7.attack = 0
+                self.boat7.c = colors.black
+            if self.boat8.health == 0:
+                self.boat8.moves = 0
+                self.boat8.attack = 0
+                self.boat8.c = colors.black
+
             
     def move_boat1(self):
         self.thing = 1
