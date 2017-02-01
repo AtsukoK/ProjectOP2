@@ -1,5 +1,13 @@
 import psycopg2
-import main_game
+import pygame
+import colors
+import functions
+
+screen_width = 800
+screen_height = 600
+size = (screen_width, screen_height)
+screen = pygame.display.set_mode(size)
+
 
 def interact_with_database(command):
     connection = psycopg2.connect("dbname=Battleport user=postgres password=liweiyeh")
@@ -25,7 +33,7 @@ def interact_with_database(command):
 
 # Uploads a score into the hiscore table
 def upload_leaderboards(name, wins, losses):
-    interact_with_database("UPDATE score SET score = {} WHERE name = '{}'"
+    interact_with_database("INSERT INTO leaderboards VALUES ('{}', {}, {}"
                            .format(name, wins, losses))
 
 
@@ -33,8 +41,8 @@ def upload_leaderboards(name, wins, losses):
 #def download_leaerboards():
 #    return interact_with_database("SELECT * FROM score")
 
-print(main_game.saved_name1)
 # Downloads the top score from database
-def download_top_score():
-    result = interact_with_database("SELECT * FROM score ORDER BY score")[0][1]
-    return result
+
+def download_leaderboads():
+    names_leaderboard = interact_with_database("SELECT name, wins FROM leaderboards ")
+    return names_leaderboard
