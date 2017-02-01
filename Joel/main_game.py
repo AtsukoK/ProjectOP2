@@ -66,6 +66,7 @@ def main_game():
         player.turnboat()
         player.attackboat()
         player.draw()
+        player.Win()
         functions.button("pause", 0, 0, 150, 50,  colors.snow, colors.brigth_snow, pause)
         pygame.display.flip()
 
