@@ -4,7 +4,7 @@ import colors
 import images
 import functions
 from pygame.locals import *
-import database
+from database import*
 
 
 pygame.init()
@@ -38,13 +38,27 @@ def name1():
                 quit()
 
         screen.fill((colors.black))
+        functions.button("Main Menu", 0, 0, 100, 50, colors.white, colors.snow, intro)
         functions.button("Next", 700, 550, 100, 50, colors.white, colors.snow, name2)
         functions.text("comicsansms", 50, "Choose player 1 name", screen_width/2, screen_height/4, colors.white)
         functions.text("comicsansms", 50, name1, screen_width/2, screen_height/2, colors.white)
         pygame.display.update()
 
 saved_name2 = ""
+
 def name2():
+    stats = download_leaderboads()
+    updated = False
+    for stat in stats:
+        if stat[0] == saved_name1:
+            updated = True
+            update_leaderboards(saved_name1, stat[1] + 1, stat[2])
+            break
+
+    if not updated:
+        insert_leaderboards(saved_name1, 1, 0)
+
+
     global saved_name2
     name2 = ""
     while True:
@@ -64,6 +78,7 @@ def name2():
                 quit()
 
         screen.fill((colors.black))
+        functions.button("Main Menu", 0, 0, 100, 50, colors.white, colors.snow, intro)
         functions.button("Next", 700, 550, 100, 50, colors.white, colors.snow, main_game)
         functions.button("previous", 0, 550, 100, 50, colors.white, colors.snow, name1)
         functions.text("comicsansms", 50, "Choose player 2 name", screen_width/2, screen_height/4, colors.white)
@@ -89,7 +104,7 @@ def pause():
         functions.button("Continue", 340, screen_height*7/20, 120, 40,  colors.green, colors.bright_green, main_game)
         functions.button("Game Rules", 340, screen_height*9/20, 120, 40,  colors.blue, colors.bright_blue, game_rules_1_pause)
         functions.button("Settings", 340, screen_height*11/20, 120, 40,  colors.yellow, colors.bright_yellow, settings_pause)
-        functions.button("Quit", 340, screen_height*13/20, 120, 40,  colors.red, colors.bright_red, intro)
+        functions.button("Exit Game", 340, screen_height*13/20, 120, 40,  colors.red, colors.bright_red, intro)
         pygame.display.flip()
 
 def main_game():
@@ -110,6 +125,8 @@ def main_game():
         player.draw()
         functions.button("pause", 0, 0, 150, 50,  colors.snow, colors.bright_snow, pause)
         pygame.display.flip()
+
+
 
 
 def game_rules_1():
@@ -167,18 +184,25 @@ def game_rules_6():
 def highscores():
     while not functions.game():
         screen.fill(colors.white)
-        stats = database.download_leaderboads()
+        functions.button("Main Menu", 0, 0, 100, 50, colors.snow, colors.bright_snow, intro)
+        stats = download_leaderboads()
 
-        functions.text("comicsansms", 30, "Name", screen_width*0.33, 100, colors.black)
-        functions.text("comicsansms", 30, "Wins", screen_width*0.66, 100, colors.black)
+        functions.text("comicsansms", 30, "Name", screen_width*0.20, 100, colors.black)
+        functions.text("comicsansms", 30, "Wins", screen_width*0.40, 100, colors.black)
+        functions.text("comicsansms", 30, "Losses", screen_width*0.60, 100, colors.black)
+        functions.text("comicsansms", 30, "W/L Ratio", screen_width*0.80, 100, colors.black)
 
         heightstat = 150
 
         for stat in stats:
-            print(stat[0])
-            print(stat[1])
-            functions.text("comicsansms", 20, str(stat[0]), screen_width*0.33, heightstat, colors.black)
-            functions.text("comicsansms", 20, str(stat[1]), screen_width*0.66, heightstat, colors.black)
+            functions.text("comicsansms", 20, str(stat[0]), screen_width*0.20, heightstat, colors.black)
+            functions.text("comicsansms", 20, str(stat[1]), screen_width*0.40, heightstat, colors.black)
+            functions.text("comicsansms", 20, str(stat[2]), screen_width*0.60, heightstat, colors.black)
+            if stat[2] != 0:
+                functions.text("comicsansms", 20, str(format((stat[1]/stat[2]), '.2f')), screen_width*0.80, heightstat, colors.black)
+            else:
+                functions.text("comicsansms", 20, str(stat[1]), screen_width*0.80, heightstat, colors.black)
+
             heightstat += 40
 
         pygame.display.flip()
@@ -260,9 +284,6 @@ class Board():
         return self.board
 
 
-class Card():
-    pass
-
 class Player():
     def __init__(self):
         self.player1_win = False
@@ -309,6 +330,29 @@ class Player():
         self.player_attack = 2
 
         self.thing = 0
+
+
+#    def win(self):
+#        if self.boat1.health and self.boat3.health and self.boat5.health and self.boat7.health:
+#            self.player2_win = True
+#            stats = download_leaderboads()
+#            counter = count_rows()
+#            for stat in stats:
+#                if stat[0] == saved_name1:
+#                    update_leaderboards(saved_name1, stat[1] + 1, stat[2])
+#                elif stat == counter:
+#                    insert_leaderboards(saved_name1, 1, 0)
+#
+#
+#        elif self.boat2.health and self.boat4.health and self.boat6.health and self.boat8.health:
+#            self.player1_win = True
+#            stats = download_leaderboads()
+#            counter = count_rows()
+#            for stat in stats:
+#                if stat[0] == saved_name1:
+#                    update_leaderboards(saved_name1, stat[1] + 1)
+#                elif stat == counter:
+#                    insert_leaderboards(saved_name1, 1)
 
 
     def base_color(self):
@@ -572,10 +616,10 @@ class Player():
 
     def attack2(self):
         if self.thing == 6:
-            functions.button("boat 1", 675, 400, 75, 25, colors.yellow, colors.bright_yellow, self.attackattack1)
-            functions.button("boat 2", 675, 425, 75, 25, colors.yellow, colors.bright_yellow, self.attackattack3)
-            functions.button("boat 3", 675, 450, 75, 25, colors.yellow, colors.bright_yellow, self.attackattack5)
-            functions.button("boat 4", 675, 475, 75, 25, colors.yellow, colors.bright_yellow, self.attackattack7)
+            functions.button("boat 1", 675, 400, 75, 25, colors.yellow, colors.bright_yellow, self.attackattack2)
+            functions.button("boat 2", 675, 425, 75, 25, colors.yellow, colors.bright_yellow, self.attackattack4)
+            functions.button("boat 3", 675, 450, 75, 25, colors.yellow, colors.bright_yellow, self.attackattack6)
+            functions.button("boat 4", 675, 475, 75, 25, colors.yellow, colors.bright_yellow, self.attackattack8)
 
     def movemove1(self):
         self.boat_move = 1
@@ -1000,47 +1044,399 @@ class Player():
                 self.draw_rect(colors.bright_red, (self.boat2.x + 40), (self.boat2.y + 20))
         elif self.boat_attack == 4:
             if self.boat2.attack != 0 and self.player_attack!= 0:
-                pass
+                self.draw_rect(colors.bright_red, self.boat2.x, (self.boat2.y - 20))
+                self.draw_rect(colors.bright_red, self.boat2.x, (self.boat2.y - 40))
+                self.draw_rect(colors.bright_red, self.boat2.x, (self.boat2.y - 60))
+                self.draw_rect(colors.bright_red, self.boat2.x, (self.boat2.y + 20))
+                self.draw_rect(colors.bright_red, self.boat2.x, (self.boat2.y + 40))
+                self.draw_rect(colors.bright_red, self.boat2.x, (self.boat2.y + 60))
+                self.draw_rect(colors.bright_red, self.boat2.x + 20, (self.boat2.y - 20))
+                self.draw_rect(colors.bright_red, self.boat2.x + 20, (self.boat2.y - 40))
+                self.draw_rect(colors.bright_red, self.boat2.x + 20, (self.boat2.y - 60))
+                self.draw_rect(colors.bright_red, self.boat2.x + 20, (self.boat2.y + 20))
+                self.draw_rect(colors.bright_red, self.boat2.x + 20, (self.boat2.y + 40))
+                self.draw_rect(colors.bright_red, self.boat2.x + 20, (self.boat2.y + 60))
         elif self.boat_attack == 5:
             if self.boat3.attack != 0 and self.player_attack!= 0:
-                pass
+                self.draw_rect(colors.bright_red, self.boat3.x, (self.boat3.y - 20))
+                self.draw_rect(colors.bright_red, self.boat3.x, (self.boat3.y - 40))
+                self.draw_rect(colors.bright_red, self.boat3.x, (self.boat3.y - 60))
+                self.draw_rect(colors.bright_red, self.boat3.x, (self.boat3.y + 60))
+                self.draw_rect(colors.bright_red, self.boat3.x, (self.boat3.y + 80))
+                self.draw_rect(colors.bright_red, self.boat3.x, (self.boat3.y + 100))
+                self.draw_rect(colors.bright_red, (self.boat3.x - 20), self.boat3.y)
+                self.draw_rect(colors.bright_red, (self.boat3.x - 40), self.boat3.y)
+                self.draw_rect(colors.bright_red, (self.boat3.x - 60), self.boat3.y)
+                self.draw_rect(colors.bright_red, (self.boat3.x - 20), (self.boat3.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat3.x - 40), (self.boat3.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat3.x - 60), (self.boat3.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat3.x + 20), self.boat3.y)
+                self.draw_rect(colors.bright_red, (self.boat3.x + 40), self.boat3.y)
+                self.draw_rect(colors.bright_red, (self.boat3.x + 60), self.boat3.y)
+                self.draw_rect(colors.bright_red, (self.boat3.x + 20), (self.boat3.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat3.x + 40), (self.boat3.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat3.x + 60), (self.boat3.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat3.x + 20), (self.boat3.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat3.x + 40), (self.boat3.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat3.x + 60), (self.boat3.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat3.x - 20), (self.boat3.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat3.x - 40), (self.boat3.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat3.x - 60), (self.boat3.y + 40))
         elif self.boat_attack == 6:
             if self.boat3.attack != 0 and self.player_attack!= 0:
-                pass
+                self.draw_rect(colors.bright_red, self.boat3.x, (self.boat3.y - 20))
+                self.draw_rect(colors.bright_red, self.boat3.x, (self.boat3.y - 40))
+                self.draw_rect(colors.bright_red, self.boat3.x, (self.boat3.y - 60))
+                self.draw_rect(colors.bright_red, self.boat3.x, (self.boat3.y - 80))
+                self.draw_rect(colors.bright_red, self.boat3.x, (self.boat3.y + 20))
+                self.draw_rect(colors.bright_red, self.boat3.x, (self.boat3.y + 40))
+                self.draw_rect(colors.bright_red, self.boat3.x, (self.boat3.y + 60))
+                self.draw_rect(colors.bright_red, self.boat3.x, (self.boat3.y + 80))
+                self.draw_rect(colors.bright_red, self.boat3.x + 20, (self.boat3.y - 20))
+                self.draw_rect(colors.bright_red, self.boat3.x + 20, (self.boat3.y - 40))
+                self.draw_rect(colors.bright_red, self.boat3.x + 20, (self.boat3.y - 60))
+                self.draw_rect(colors.bright_red, self.boat3.x + 20, (self.boat3.y - 80))
+                self.draw_rect(colors.bright_red, self.boat3.x + 20, (self.boat3.y + 20))
+                self.draw_rect(colors.bright_red, self.boat3.x + 20, (self.boat3.y + 40))
+                self.draw_rect(colors.bright_red, self.boat3.x + 20, (self.boat3.y + 60))
+                self.draw_rect(colors.bright_red, self.boat3.x + 20, (self.boat3.y + 80))
+                self.draw_rect(colors.bright_red, self.boat3.x + 40, (self.boat3.y - 20))
+                self.draw_rect(colors.bright_red, self.boat3.x + 40, (self.boat3.y - 40))
+                self.draw_rect(colors.bright_red, self.boat3.x + 40, (self.boat3.y - 60))
+                self.draw_rect(colors.bright_red, self.boat3.x + 40, (self.boat3.y - 80))
+                self.draw_rect(colors.bright_red, self.boat3.x + 40, (self.boat3.y + 20))
+                self.draw_rect(colors.bright_red, self.boat3.x + 40, (self.boat3.y + 40))
+                self.draw_rect(colors.bright_red, self.boat3.x + 40, (self.boat3.y + 60))
+                self.draw_rect(colors.bright_red, self.boat3.x + 40, (self.boat3.y + 80))
         elif self.boat_attack == 7:
             if self.boat4.attack != 0 and self.player_attack!= 0:
-                pass
+                self.draw_rect(colors.bright_red, self.boat4.x, (self.boat4.y - 20))
+                self.draw_rect(colors.bright_red, self.boat4.x, (self.boat4.y - 40))
+                self.draw_rect(colors.bright_red, self.boat4.x, (self.boat4.y - 60))
+                self.draw_rect(colors.bright_red, self.boat4.x, (self.boat4.y + 60))
+                self.draw_rect(colors.bright_red, self.boat4.x, (self.boat4.y + 80))
+                self.draw_rect(colors.bright_red, self.boat4.x, (self.boat4.y + 100))
+                self.draw_rect(colors.bright_red, (self.boat4.x - 20), self.boat4.y)
+                self.draw_rect(colors.bright_red, (self.boat4.x - 40), self.boat4.y)
+                self.draw_rect(colors.bright_red, (self.boat4.x - 60), self.boat4.y)
+                self.draw_rect(colors.bright_red, (self.boat4.x - 20), (self.boat4.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat4.x - 40), (self.boat4.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat4.x - 60), (self.boat4.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat4.x + 20), self.boat4.y)
+                self.draw_rect(colors.bright_red, (self.boat4.x + 40), self.boat4.y)
+                self.draw_rect(colors.bright_red, (self.boat4.x + 60), self.boat4.y)
+                self.draw_rect(colors.bright_red, (self.boat4.x + 20), (self.boat4.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat4.x + 40), (self.boat4.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat4.x + 60), (self.boat4.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat4.x + 20), (self.boat4.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat4.x + 40), (self.boat4.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat4.x + 60), (self.boat4.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat4.x - 20), (self.boat4.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat4.x - 40), (self.boat4.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat4.x - 60), (self.boat4.y + 40))
         elif self.boat_attack == 8:
             if self.boat4.attack != 0 and self.player_attack!= 0:
-                pass
+                self.draw_rect(colors.bright_red, self.boat4.x, (self.boat4.y - 20))
+                self.draw_rect(colors.bright_red, self.boat4.x, (self.boat4.y - 40))
+                self.draw_rect(colors.bright_red, self.boat4.x, (self.boat4.y - 60))
+                self.draw_rect(colors.bright_red, self.boat4.x, (self.boat4.y - 80))
+                self.draw_rect(colors.bright_red, self.boat4.x, (self.boat4.y + 20))
+                self.draw_rect(colors.bright_red, self.boat4.x, (self.boat4.y + 40))
+                self.draw_rect(colors.bright_red, self.boat4.x, (self.boat4.y + 60))
+                self.draw_rect(colors.bright_red, self.boat4.x, (self.boat4.y + 80))
+                self.draw_rect(colors.bright_red, self.boat4.x + 20, (self.boat4.y - 20))
+                self.draw_rect(colors.bright_red, self.boat4.x + 20, (self.boat4.y - 40))
+                self.draw_rect(colors.bright_red, self.boat4.x + 20, (self.boat4.y - 60))
+                self.draw_rect(colors.bright_red, self.boat4.x + 20, (self.boat4.y - 80))
+                self.draw_rect(colors.bright_red, self.boat4.x + 20, (self.boat4.y + 20))
+                self.draw_rect(colors.bright_red, self.boat4.x + 20, (self.boat4.y + 40))
+                self.draw_rect(colors.bright_red, self.boat4.x + 20, (self.boat4.y + 60))
+                self.draw_rect(colors.bright_red, self.boat4.x + 20, (self.boat4.y + 80))
+                self.draw_rect(colors.bright_red, self.boat4.x + 40, (self.boat4.y - 20))
+                self.draw_rect(colors.bright_red, self.boat4.x + 40, (self.boat4.y - 40))
+                self.draw_rect(colors.bright_red, self.boat4.x + 40, (self.boat4.y - 60))
+                self.draw_rect(colors.bright_red, self.boat4.x + 40, (self.boat4.y - 80))
+                self.draw_rect(colors.bright_red, self.boat4.x + 40, (self.boat4.y + 20))
+                self.draw_rect(colors.bright_red, self.boat4.x + 40, (self.boat4.y + 40))
+                self.draw_rect(colors.bright_red, self.boat4.x + 40, (self.boat4.y + 60))
+                self.draw_rect(colors.bright_red, self.boat4.x + 40, (self.boat4.y + 80))
         elif self.boat_attack == 9:
             if self.boat5.attack != 0 and self.player_attack!= 0:
-                pass
+                self.draw_rect(colors.bright_red, self.boat5.x, (self.boat5.y - 20))
+                self.draw_rect(colors.bright_red, self.boat5.x, (self.boat5.y - 40))
+                self.draw_rect(colors.bright_red, self.boat5.x, (self.boat5.y - 60))
+                self.draw_rect(colors.bright_red, self.boat5.x, (self.boat5.y + 60))
+                self.draw_rect(colors.bright_red, self.boat5.x, (self.boat5.y + 80))
+                self.draw_rect(colors.bright_red, self.boat5.x, (self.boat5.y + 100))
+                self.draw_rect(colors.bright_red, (self.boat5.x - 20), self.boat5.y)
+                self.draw_rect(colors.bright_red, (self.boat5.x - 40), self.boat5.y)
+                self.draw_rect(colors.bright_red, (self.boat5.x - 60), self.boat5.y)
+                self.draw_rect(colors.bright_red, (self.boat5.x - 20), (self.boat5.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat5.x - 40), (self.boat5.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat5.x - 60), (self.boat5.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat5.x + 20), self.boat5.y)
+                self.draw_rect(colors.bright_red, (self.boat5.x + 40), self.boat5.y)
+                self.draw_rect(colors.bright_red, (self.boat5.x + 60), self.boat5.y)
+                self.draw_rect(colors.bright_red, (self.boat5.x + 20), (self.boat5.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat5.x + 40), (self.boat5.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat5.x + 60), (self.boat5.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat5.x + 20), (self.boat5.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat5.x + 40), (self.boat5.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat5.x + 60), (self.boat5.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat5.x - 20), (self.boat5.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat5.x - 40), (self.boat5.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat5.x - 60), (self.boat5.y + 40))
         elif self.boat_attack == 10:
             if self.boat5.attack != 0 and self.player_attack!= 0:
-                pass
+                self.draw_rect(colors.bright_red, self.boat5.x, (self.boat5.y - 20))
+                self.draw_rect(colors.bright_red, self.boat5.x, (self.boat5.y - 40))
+                self.draw_rect(colors.bright_red, self.boat5.x, (self.boat5.y - 60))
+                self.draw_rect(colors.bright_red, self.boat5.x, (self.boat5.y - 80))
+                self.draw_rect(colors.bright_red, self.boat5.x, (self.boat5.y + 20))
+                self.draw_rect(colors.bright_red, self.boat5.x, (self.boat5.y + 40))
+                self.draw_rect(colors.bright_red, self.boat5.x, (self.boat5.y + 60))
+                self.draw_rect(colors.bright_red, self.boat5.x, (self.boat5.y + 80))
+                self.draw_rect(colors.bright_red, self.boat5.x + 20, (self.boat5.y - 20))
+                self.draw_rect(colors.bright_red, self.boat5.x + 20, (self.boat5.y - 40))
+                self.draw_rect(colors.bright_red, self.boat5.x + 20, (self.boat5.y - 60))
+                self.draw_rect(colors.bright_red, self.boat5.x + 20, (self.boat5.y - 80))
+                self.draw_rect(colors.bright_red, self.boat5.x + 20, (self.boat5.y + 20))
+                self.draw_rect(colors.bright_red, self.boat5.x + 20, (self.boat5.y + 40))
+                self.draw_rect(colors.bright_red, self.boat5.x + 20, (self.boat5.y + 60))
+                self.draw_rect(colors.bright_red, self.boat5.x + 20, (self.boat5.y + 80))
+                self.draw_rect(colors.bright_red, self.boat5.x + 40, (self.boat5.y - 20))
+                self.draw_rect(colors.bright_red, self.boat5.x + 40, (self.boat5.y - 40))
+                self.draw_rect(colors.bright_red, self.boat5.x + 40, (self.boat5.y - 60))
+                self.draw_rect(colors.bright_red, self.boat5.x + 40, (self.boat5.y - 80))
+                self.draw_rect(colors.bright_red, self.boat5.x + 40, (self.boat5.y + 20))
+                self.draw_rect(colors.bright_red, self.boat5.x + 40, (self.boat5.y + 40))
+                self.draw_rect(colors.bright_red, self.boat5.x + 40, (self.boat5.y + 60))
+                self.draw_rect(colors.bright_red, self.boat5.x + 40, (self.boat5.y + 80))
         elif self.boat_attack == 11:
             if self.boat6.attack != 0 and self.player_attack!= 0:
-                pass
+                self.draw_rect(colors.bright_red, self.boat6.x, (self.boat6.y - 20))
+                self.draw_rect(colors.bright_red, self.boat6.x, (self.boat6.y - 40))
+                self.draw_rect(colors.bright_red, self.boat6.x, (self.boat6.y - 60))
+                self.draw_rect(colors.bright_red, self.boat6.x, (self.boat6.y + 60))
+                self.draw_rect(colors.bright_red, self.boat6.x, (self.boat6.y + 80))
+                self.draw_rect(colors.bright_red, self.boat6.x, (self.boat6.y + 100))
+                self.draw_rect(colors.bright_red, (self.boat6.x - 20), self.boat6.y)
+                self.draw_rect(colors.bright_red, (self.boat6.x - 40), self.boat6.y)
+                self.draw_rect(colors.bright_red, (self.boat6.x - 60), self.boat6.y)
+                self.draw_rect(colors.bright_red, (self.boat6.x - 20), (self.boat6.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat6.x - 40), (self.boat6.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat6.x - 60), (self.boat6.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat6.x + 20), self.boat6.y)
+                self.draw_rect(colors.bright_red, (self.boat6.x + 40), self.boat6.y)
+                self.draw_rect(colors.bright_red, (self.boat6.x + 60), self.boat6.y)
+                self.draw_rect(colors.bright_red, (self.boat6.x + 20), (self.boat6.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat6.x + 40), (self.boat6.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat6.x + 60), (self.boat6.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat6.x + 20), (self.boat6.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat6.x + 40), (self.boat6.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat6.x + 60), (self.boat6.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat6.x - 20), (self.boat6.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat6.x - 40), (self.boat6.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat6.x - 60), (self.boat6.y + 40))
         elif self.boat_attack == 12:
             if self.boat6.attack != 0 and self.player_attack!= 0:
-                pass
+                self.draw_rect(colors.bright_red, self.boat6.x, (self.boat6.y - 20))
+                self.draw_rect(colors.bright_red, self.boat6.x, (self.boat6.y - 40))
+                self.draw_rect(colors.bright_red, self.boat6.x, (self.boat6.y - 60))
+                self.draw_rect(colors.bright_red, self.boat6.x, (self.boat6.y - 80))
+                self.draw_rect(colors.bright_red, self.boat6.x, (self.boat6.y + 20))
+                self.draw_rect(colors.bright_red, self.boat6.x, (self.boat6.y + 40))
+                self.draw_rect(colors.bright_red, self.boat6.x, (self.boat6.y + 60))
+                self.draw_rect(colors.bright_red, self.boat6.x, (self.boat6.y + 80))
+                self.draw_rect(colors.bright_red, self.boat6.x + 20, (self.boat6.y - 20))
+                self.draw_rect(colors.bright_red, self.boat6.x + 20, (self.boat6.y - 40))
+                self.draw_rect(colors.bright_red, self.boat6.x + 20, (self.boat6.y - 60))
+                self.draw_rect(colors.bright_red, self.boat6.x + 20, (self.boat6.y - 80))
+                self.draw_rect(colors.bright_red, self.boat6.x + 20, (self.boat6.y + 20))
+                self.draw_rect(colors.bright_red, self.boat6.x + 20, (self.boat6.y + 40))
+                self.draw_rect(colors.bright_red, self.boat6.x + 20, (self.boat6.y + 60))
+                self.draw_rect(colors.bright_red, self.boat6.x + 20, (self.boat6.y + 80))
+                self.draw_rect(colors.bright_red, self.boat6.x + 40, (self.boat6.y - 20))
+                self.draw_rect(colors.bright_red, self.boat6.x + 40, (self.boat6.y - 40))
+                self.draw_rect(colors.bright_red, self.boat6.x + 40, (self.boat6.y - 60))
+                self.draw_rect(colors.bright_red, self.boat6.x + 40, (self.boat6.y - 80))
+                self.draw_rect(colors.bright_red, self.boat6.x + 40, (self.boat6.y + 20))
+                self.draw_rect(colors.bright_red, self.boat6.x + 40, (self.boat6.y + 40))
+                self.draw_rect(colors.bright_red, self.boat6.x + 40, (self.boat6.y + 60))
+                self.draw_rect(colors.bright_red, self.boat6.x + 40, (self.boat6.y + 80))
         elif self.boat_attack == 13:
             if self.boat7.attack != 0 and self.player_attack!= 0:
-                pass
+                self.draw_rect(colors.bright_red, self.boat7.x, (self.boat7.y - 20))
+                self.draw_rect(colors.bright_red, self.boat7.x, (self.boat7.y - 40))
+                self.draw_rect(colors.bright_red, self.boat7.x, (self.boat7.y - 60))
+                self.draw_rect(colors.bright_red, self.boat7.x, (self.boat7.y - 80))
+                self.draw_rect(colors.bright_red, self.boat7.x, (self.boat7.y + 80))
+                self.draw_rect(colors.bright_red, self.boat7.x, (self.boat7.y + 100))
+                self.draw_rect(colors.bright_red, self.boat7.x, (self.boat7.y + 270))
+                self.draw_rect(colors.bright_red, self.boat7.x, (self.boat7.y + 315))
+                self.draw_rect(colors.bright_red, (self.boat7.x - 20), self.boat7.y)
+                self.draw_rect(colors.bright_red, (self.boat7.x - 40), self.boat7.y)
+                self.draw_rect(colors.bright_red, (self.boat7.x - 60), self.boat7.y)
+                self.draw_rect(colors.bright_red, (self.boat7.x - 80), self.boat7.y)
+                self.draw_rect(colors.bright_red, (self.boat7.x - 20), (self.boat7.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat7.x - 40), (self.boat7.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat7.x - 60), (self.boat7.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat7.x - 80), (self.boat7.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat7.x + 20), self.boat7.y)
+                self.draw_rect(colors.bright_red, (self.boat7.x + 40), self.boat7.y)
+                self.draw_rect(colors.bright_red, (self.boat7.x + 60), self.boat7.y)
+                self.draw_rect(colors.bright_red, (self.boat7.x + 80), self.boat7.y)
+                self.draw_rect(colors.bright_red, (self.boat7.x + 20), (self.boat7.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat7.x + 40), (self.boat7.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat7.x + 60), (self.boat7.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat7.x + 80), (self.boat7.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat7.x + 20), (self.boat7.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat7.x + 40), (self.boat7.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat7.x + 60), (self.boat7.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat7.x + 80), (self.boat7.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat7.x - 20), (self.boat7.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat7.x - 40), (self.boat7.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat7.x - 60), (self.boat7.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat7.x - 80), (self.boat7.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat7.x + 20), (self.boat7.y + 60))
+                self.draw_rect(colors.bright_red, (self.boat7.x + 40), (self.boat7.y + 60))
+                self.draw_rect(colors.bright_red, (self.boat7.x + 60), (self.boat7.y + 60))
+                self.draw_rect(colors.bright_red, (self.boat7.x + 80), (self.boat7.y + 60))
+                self.draw_rect(colors.bright_red, (self.boat7.x - 20), (self.boat7.y + 60))
+                self.draw_rect(colors.bright_red, (self.boat7.x - 40), (self.boat7.y + 60))
+                self.draw_rect(colors.bright_red, (self.boat7.x - 60), (self.boat7.y + 60))
+                self.draw_rect(colors.bright_red, (self.boat7.x - 80), (self.boat7.y + 60))
         elif self.boat_attack == 14:
             if self.boat7.attack != 0 and self.player_attack!= 0:
-                pass
+                self.draw_rect(colors.bright_red, self.boat7.x, (self.boat7.y - 20))
+                self.draw_rect(colors.bright_red, self.boat7.x, (self.boat7.y - 40))
+                self.draw_rect(colors.bright_red, self.boat7.x, (self.boat7.y - 60))
+                self.draw_rect(colors.bright_red, self.boat7.x, (self.boat7.y - 80))
+                self.draw_rect(colors.bright_red, self.boat7.x, (self.boat7.y - 100))
+                self.draw_rect(colors.bright_red, self.boat7.x, (self.boat7.y + 20))
+                self.draw_rect(colors.bright_red, self.boat7.x, (self.boat7.y + 40))
+                self.draw_rect(colors.bright_red, self.boat7.x, (self.boat7.y + 60))
+                self.draw_rect(colors.bright_red, self.boat7.x, (self.boat7.y + 80))
+                self.draw_rect(colors.bright_red, self.boat7.x, (self.boat7.y + 100))
+                self.draw_rect(colors.bright_red, self.boat7.x + 20, (self.boat7.y - 20))
+                self.draw_rect(colors.bright_red, self.boat7.x + 20, (self.boat7.y - 40))
+                self.draw_rect(colors.bright_red, self.boat7.x + 20, (self.boat7.y - 60))
+                self.draw_rect(colors.bright_red, self.boat7.x + 20, (self.boat7.y - 80))
+                self.draw_rect(colors.bright_red, self.boat7.x + 20, (self.boat7.y - 100))
+                self.draw_rect(colors.bright_red, self.boat7.x + 20, (self.boat7.y + 20))
+                self.draw_rect(colors.bright_red, self.boat7.x + 20, (self.boat7.y + 40))
+                self.draw_rect(colors.bright_red, self.boat7.x + 20, (self.boat7.y + 60))
+                self.draw_rect(colors.bright_red, self.boat7.x + 20, (self.boat7.y + 80))
+                self.draw_rect(colors.bright_red, self.boat7.x + 20, (self.boat7.y + 100))
+                self.draw_rect(colors.bright_red, self.boat7.x + 40, (self.boat7.y - 20))
+                self.draw_rect(colors.bright_red, self.boat7.x + 40, (self.boat7.y - 40))
+                self.draw_rect(colors.bright_red, self.boat7.x + 40, (self.boat7.y - 60))
+                self.draw_rect(colors.bright_red, self.boat7.x + 40, (self.boat7.y - 80))
+                self.draw_rect(colors.bright_red, self.boat7.x + 40, (self.boat7.y - 100))
+                self.draw_rect(colors.bright_red, self.boat7.x + 40, (self.boat7.y + 20))
+                self.draw_rect(colors.bright_red, self.boat7.x + 40, (self.boat7.y + 40))
+                self.draw_rect(colors.bright_red, self.boat7.x + 40, (self.boat7.y + 60))
+                self.draw_rect(colors.bright_red, self.boat7.x + 40, (self.boat7.y + 80))
+                self.draw_rect(colors.bright_red, self.boat7.x + 40, (self.boat7.y + 100))
+                self.draw_rect(colors.bright_red, self.boat7.x + 60, (self.boat7.y - 20))
+                self.draw_rect(colors.bright_red, self.boat7.x + 60, (self.boat7.y - 40))
+                self.draw_rect(colors.bright_red, self.boat7.x + 60, (self.boat7.y - 60))
+                self.draw_rect(colors.bright_red, self.boat7.x + 60, (self.boat7.y - 80))
+                self.draw_rect(colors.bright_red, self.boat7.x + 60, (self.boat7.y - 100))
+                self.draw_rect(colors.bright_red, self.boat7.x + 60, (self.boat7.y + 20))
+                self.draw_rect(colors.bright_red, self.boat7.x + 60, (self.boat7.y + 40))
+                self.draw_rect(colors.bright_red, self.boat7.x + 60, (self.boat7.y + 60))
+                self.draw_rect(colors.bright_red, self.boat7.x + 60, (self.boat7.y + 80))
+                self.draw_rect(colors.bright_red, self.boat7.x + 60, (self.boat7.y + 100))
         elif self.boat_attack == 15:
             if self.boat8.attack != 0 and self.player_attack!= 0:
-                pass
+                self.draw_rect(colors.bright_red, self.boat8.x, (self.boat8.y - 20))
+                self.draw_rect(colors.bright_red, self.boat8.x, (self.boat8.y - 40))
+                self.draw_rect(colors.bright_red, self.boat8.x, (self.boat8.y - 60))
+                self.draw_rect(colors.bright_red, self.boat8.x, (self.boat8.y - 80))
+                self.draw_rect(colors.bright_red, self.boat8.x, (self.boat8.y + 80))
+                self.draw_rect(colors.bright_red, self.boat8.x, (self.boat8.y + 100))
+                self.draw_rect(colors.bright_red, self.boat8.x, (self.boat8.y + 270))
+                self.draw_rect(colors.bright_red, self.boat8.x, (self.boat8.y + 315))
+                self.draw_rect(colors.bright_red, (self.boat8.x - 20), self.boat8.y)
+                self.draw_rect(colors.bright_red, (self.boat8.x - 40), self.boat8.y)
+                self.draw_rect(colors.bright_red, (self.boat8.x - 60), self.boat8.y)
+                self.draw_rect(colors.bright_red, (self.boat8.x - 80), self.boat8.y)
+                self.draw_rect(colors.bright_red, (self.boat8.x - 20), (self.boat8.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat8.x - 40), (self.boat8.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat8.x - 60), (self.boat8.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat8.x - 80), (self.boat8.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat8.x + 20), self.boat8.y)
+                self.draw_rect(colors.bright_red, (self.boat8.x + 40), self.boat8.y)
+                self.draw_rect(colors.bright_red, (self.boat8.x + 60), self.boat8.y)
+                self.draw_rect(colors.bright_red, (self.boat8.x + 80), self.boat8.y)
+                self.draw_rect(colors.bright_red, (self.boat8.x + 20), (self.boat8.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat8.x + 40), (self.boat8.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat8.x + 60), (self.boat8.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat8.x + 80), (self.boat8.y + 20))
+                self.draw_rect(colors.bright_red, (self.boat8.x + 20), (self.boat8.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat8.x + 40), (self.boat8.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat8.x + 60), (self.boat8.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat8.x + 80), (self.boat8.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat8.x - 20), (self.boat8.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat8.x - 40), (self.boat8.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat8.x - 60), (self.boat8.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat8.x - 80), (self.boat8.y + 40))
+                self.draw_rect(colors.bright_red, (self.boat8.x + 20), (self.boat8.y + 60))
+                self.draw_rect(colors.bright_red, (self.boat8.x + 40), (self.boat8.y + 60))
+                self.draw_rect(colors.bright_red, (self.boat8.x + 60), (self.boat8.y + 60))
+                self.draw_rect(colors.bright_red, (self.boat8.x + 80), (self.boat8.y + 60))
+                self.draw_rect(colors.bright_red, (self.boat8.x - 20), (self.boat8.y + 60))
+                self.draw_rect(colors.bright_red, (self.boat8.x - 40), (self.boat8.y + 60))
+                self.draw_rect(colors.bright_red, (self.boat8.x - 60), (self.boat8.y + 60))
+                self.draw_rect(colors.bright_red, (self.boat8.x - 80), (self.boat8.y + 60))
         elif self.boat_attack == 16:
             if self.boat8.attack != 0 and self.player_attack!= 0:
-                pass
+                self.draw_rect(colors.bright_red, self.boat8.x, (self.boat8.y - 20))
+                self.draw_rect(colors.bright_red, self.boat8.x, (self.boat8.y - 40))
+                self.draw_rect(colors.bright_red, self.boat8.x, (self.boat8.y - 60))
+                self.draw_rect(colors.bright_red, self.boat8.x, (self.boat8.y - 80))
+                self.draw_rect(colors.bright_red, self.boat8.x, (self.boat8.y - 100))
+                self.draw_rect(colors.bright_red, self.boat8.x, (self.boat8.y + 20))
+                self.draw_rect(colors.bright_red, self.boat8.x, (self.boat8.y + 40))
+                self.draw_rect(colors.bright_red, self.boat8.x, (self.boat8.y + 60))
+                self.draw_rect(colors.bright_red, self.boat8.x, (self.boat8.y + 80))
+                self.draw_rect(colors.bright_red, self.boat8.x, (self.boat8.y + 100))
+                self.draw_rect(colors.bright_red, self.boat8.x + 20, (self.boat8.y - 20))
+                self.draw_rect(colors.bright_red, self.boat8.x + 20, (self.boat8.y - 40))
+                self.draw_rect(colors.bright_red, self.boat8.x + 20, (self.boat8.y - 60))
+                self.draw_rect(colors.bright_red, self.boat8.x + 20, (self.boat8.y - 80))
+                self.draw_rect(colors.bright_red, self.boat8.x + 20, (self.boat8.y - 100))
+                self.draw_rect(colors.bright_red, self.boat8.x + 20, (self.boat8.y + 20))
+                self.draw_rect(colors.bright_red, self.boat8.x + 20, (self.boat8.y + 40))
+                self.draw_rect(colors.bright_red, self.boat8.x + 20, (self.boat8.y + 60))
+                self.draw_rect(colors.bright_red, self.boat8.x + 20, (self.boat8.y + 80))
+                self.draw_rect(colors.bright_red, self.boat8.x + 20, (self.boat8.y + 100))
+                self.draw_rect(colors.bright_red, self.boat8.x + 40, (self.boat8.y - 20))
+                self.draw_rect(colors.bright_red, self.boat8.x + 40, (self.boat8.y - 40))
+                self.draw_rect(colors.bright_red, self.boat8.x + 40, (self.boat8.y - 60))
+                self.draw_rect(colors.bright_red, self.boat8.x + 40, (self.boat8.y - 80))
+                self.draw_rect(colors.bright_red, self.boat8.x + 40, (self.boat8.y - 100))
+                self.draw_rect(colors.bright_red, self.boat8.x + 40, (self.boat8.y + 20))
+                self.draw_rect(colors.bright_red, self.boat8.x + 40, (self.boat8.y + 40))
+                self.draw_rect(colors.bright_red, self.boat8.x + 40, (self.boat8.y + 60))
+                self.draw_rect(colors.bright_red, self.boat8.x + 40, (self.boat8.y + 80))
+                self.draw_rect(colors.bright_red, self.boat8.x + 40, (self.boat8.y + 100))
+                self.draw_rect(colors.bright_red, self.boat8.x + 60, (self.boat8.y - 20))
+                self.draw_rect(colors.bright_red, self.boat8.x + 60, (self.boat8.y - 40))
+                self.draw_rect(colors.bright_red, self.boat8.x + 60, (self.boat8.y - 60))
+                self.draw_rect(colors.bright_red, self.boat8.x + 60, (self.boat8.y - 80))
+                self.draw_rect(colors.bright_red, self.boat8.x + 60, (self.boat8.y - 100))
+                self.draw_rect(colors.bright_red, self.boat8.x + 60, (self.boat8.y + 20))
+                self.draw_rect(colors.bright_red, self.boat8.x + 60, (self.boat8.y + 40))
+                self.draw_rect(colors.bright_red, self.boat8.x + 60, (self.boat8.y + 60))
+                self.draw_rect(colors.bright_red, self.boat8.x + 60, (self.boat8.y + 80))
+                self.draw_rect(colors.bright_red, self.boat8.x + 60, (self.boat8.y + 100))
 
     def draw_rect(self, color, x, y):
-        if x >= 200  and x < 600 and y >= 100 and y < 500:
-            pygame.draw.rect(screen, color,(x, y, 19, 19))
+            if x >= 200  and x < 600 and y >= 100 and y < 500:
+                pygame.draw.rect(screen, color,(x, y, 19, 19))
+
 class Boat(Player):
     def __init__(self, c, x, y, w, h, health, moves):
         self.c = c
@@ -1065,3 +1461,4 @@ player = Player()
 intro()
 pygame.quit()
 quit()
+
