@@ -14,7 +14,6 @@ size = (screen_width, screen_height)
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Battleport")
 
-events = pygame.event.get()
 
 
 saved_name1 = ""
@@ -47,17 +46,6 @@ def name1():
 saved_name2 = ""
 
 def name2():
-    stats = download_leaderboads()
-    updated = False
-    for stat in stats:
-        if stat[0] == saved_name1:
-            updated = True
-            update_leaderboards(saved_name1, stat[1] + 1, stat[2])
-            break
-
-    if not updated:
-        insert_leaderboards(saved_name1, 1, 0)
-
 
     global saved_name2
     name2 = ""
