@@ -29,19 +29,22 @@ def interact_with_database(command):
     return results
 
 
-# Uploads a score into the hiscore table
-def upload_leaderboards(name, wins, losses):
-    interact_with_database("INSERT INTO leaderboards VALUES ('{}', {}, {}"
+# Updates an existing row in the leaderboards
+def update_leaderboards(name, wins, losses):
+    interact_with_database("UPDATE leaderboards SET wins = {}, losses = {} WHERE name = '{}'"
+                           .format(wins, losses, name))
+
+# Inserts a row into the leaderboards
+def insert_leaderboards(name, wins, losses):
+    interact_with_database("INSERT INTO leaderboards VALUES ('{}', {}, {})"
                            .format(name, wins, losses))
 
+# Counts the amount of rows
+def count_rows():
+    counter = interact_with_database("SELECT count(name) FROM leaderboards")
+    return counter
 
-# Downloads score data from database
-#def download_leaerboards():
-#    return interact_with_database("SELECT * FROM score")
-
-# Downloads the top score from database
-
+# Downloads the leaderboards
 def download_leaderboads():
-    names_leaderboard = interact_with_database("SELECT name, wins FROM leaderboards ")
-    return names_leaderboard
-
+    get_names_leaderboard = interact_with_database("SELECT name, wins, losses FROM leaderboards ")
+    return get_names_leaderboard
