@@ -46,5 +46,5 @@ def count_rows():
 
 # Downloads the leaderboards
 def download_leaderboards():
-    get_names_leaderboard = interact_with_database("SELECT name, wins, losses FROM leaderboards ORDER BY wins DESC")
+    get_names_leaderboard = interact_with_database("SELECT * FROM leaderboards ORDER BY wins DESC LIMIT 10")
     return get_names_leaderboard

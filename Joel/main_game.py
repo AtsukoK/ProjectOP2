@@ -253,7 +253,7 @@ def highscores():
             functions.text("comicsansms", 20, str(stat[2]), screen_width*0.60, heightstat, colors.black)
 
             if stat[2] != 0:
-                functions.text("comicsansms", 20, str(format((stat[1]/stat[2]), '.2f')), screen_width*0.80, heightstat, colors.black)
+                functions.text("comicsansms", 20, str(format((stat[1]/stat[2]), '.2f' )), screen_width*0.80, heightstat, colors.black)
             else:
                 functions.text("comicsansms", 20, str(stat[1]), screen_width*0.80, heightstat, colors.black)
 
@@ -442,25 +442,30 @@ class Player():
                         while (x - 455) % 45 != 0:
                             x -=1 
                         self.boat1 = Boat(colors.red, x, 910, 44, 90, 2, 3)
-                        self.boat1_draw = True                        
+                        self.boat1_draw = True
+                        pygame.mixer.stop()
+                        oemp.play(loops = 0)                        
                     elif self.beurt == 3:
                         x = mouse[0]
                         while (x - 455) % 45 != 0:
                             x -=1 
                         self.boat3 = Boat(colors.red, x, 865, 44, 135, 3, 2)
                         self.boat3_draw = True
+                        oemp.play(loops = 0) 
                     elif self.beurt == 5:
                         x = mouse[0]
                         while (x - 455) % 45 != 0:
                             x -=1 
                         self.boat5 = Boat(colors.red, x, 865, 44, 135, 3, 2)
                         self.boat5_draw = True
+                        oemp.play(loops = 0) 
                     elif self.beurt == 7:
                         x = mouse[0]
                         while (x - 455) % 45 != 0:
                             x -=1 
                         self.boat7 = Boat(colors.red, x, 820, 44, 180, 4, 1)
                         self.boat7_draw = True
+                        oemp.play(loops = 0) 
             elif self.player2_turn == True:
                 if click[0] and mouse[1] > 100 and mouse[1] < 145 and mouse[0] > 500 and mouse [0] < 1400 and mouse[0] < self.boat2_width_1 and mouse[0] < self.boat4_width_1 and mouse[0] < self.boat6_width_1 \
                 or click[0] and mouse[1] > 100 and mouse[1] < 145 and mouse[0] > 500 and mouse [0] < 1400 and mouse[0] > self.boat2_width_2 and mouse[0] > self.boat4_width_2 and mouse[0] > self.boat6_width_2 \
@@ -479,24 +484,28 @@ class Player():
                             x -=1 
                         self.boat2 = Boat(colors.blue, x, 100, 44, 90, 2, 3)
                         self.boat2_draw = True
+                        oemp.play(loops = 0) 
                     elif self.beurt == 4:
                         x = mouse[0]
                         while (x - 455) % 45 != 0:
                             x -=1 
                         self.boat4 = Boat(colors.blue, x, 100, 44, 135, 3, 2)
                         self.boat4_draw = True
+                        oemp.play(loops = 0) 
                     elif self.beurt == 6:
                         x = mouse[0]
                         while (x - 455) % 45 != 0:
                             x -=1 
                         self.boat6 = Boat(colors.blue, x, 100, 44, 135, 3, 2)
                         self.boat6_draw = True
+                        oemp.play(loops = 0) 
                     elif self.beurt == 8:
                         x = mouse[0]
                         while (x - 455) % 45 != 0:
                             x -=1 
                         self.boat8 = Boat(colors.blue, x, 100, 44, 180, 4, 1)
                         self.boat8_draw = True
+                        oemp.play(loops = 0) 
         else:
             if self.player1_turn == True:
                 functions.button("move", 350, 800, 150, 50, colors.green, colors.bright_green, self.move_boat1)
@@ -730,6 +739,7 @@ class Player():
                     if self.boat1.x < 500:
                         self.boat1.x += 45
                         self.boat1.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
                 elif keys[pygame.K_d]:
                     self.boat1.x += 45
@@ -737,6 +747,7 @@ class Player():
                     if self.boat1.x > 1356:
                         self.boat1.x -= 45
                         self.boat1.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
                 elif keys[pygame.K_s]:
                     self.boat1.y += 45
@@ -744,6 +755,7 @@ class Player():
                     if self.boat1.y > 910:
                         self.boat1.y -= 45
                         self.boat1.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
                 elif keys[pygame.K_w]:
                     self.boat1.y -= 45
@@ -751,6 +763,7 @@ class Player():
                     if self.boat1.y < 100:
                         self.boat1.y += 45
                         self.boat1.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
         elif self.boat_move == 2 and self.boat2.defense == False and self.boat2.health != 0:
             self.boat2.c = colors.bright_blue
@@ -762,6 +775,7 @@ class Player():
                     if self.boat2.x < 500:
                         self.boat2.x += 45
                         self.boat2.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
                 elif keys[pygame.K_d]:
                     self.boat2.x += 45
@@ -769,6 +783,7 @@ class Player():
                     if self.boat2.x > 1356:
                         self.boat2.x -= 45
                         self.boat2.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
                 elif keys[pygame.K_s]:
                     self.boat2.y += 45
@@ -776,6 +791,7 @@ class Player():
                     if self.boat2.y > 910:
                         self.boat2.y -= 45
                         self.boat2.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
                 elif keys[pygame.K_w]:
                     self.boat2.y -= 45
@@ -783,6 +799,7 @@ class Player():
                     if self.boat2.y < 100:
                         self.boat2.y += 45
                         self.boat2.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
         elif self.boat_move == 3 and self.boat3.defense == False and self.boat3.health != 0:
             self.boat3.c = colors.bright_red
@@ -794,6 +811,7 @@ class Player():
                     if self.boat3.x < 500:
                         self.boat3.x += 45
                         self.boat3.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
                 elif keys[pygame.K_d]:
                     self.boat3.x += 45
@@ -801,6 +819,7 @@ class Player():
                     if self.boat3.x > 1356:
                         self.boat3.x -= 45
                         self.boat3.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
                 elif keys[pygame.K_s]:
                     self.boat3.y += 45
@@ -808,6 +827,7 @@ class Player():
                     if self.boat3.y > 865:
                         self.boat3.y -= 45
                         self.boat3.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
                 elif keys[pygame.K_w]:
                     self.boat3.y -= 45
@@ -815,6 +835,7 @@ class Player():
                     if self.boat3.y < 100:
                         self.boat3.y += 45
                         self.boat3.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
         elif self.boat_move == 4 and self.boat4.defense == False and self.boat4.health != 0:
             self.boat4.c = colors.bright_blue
@@ -826,6 +847,7 @@ class Player():
                     if self.boat4.x < 500:
                         self.boat4.x += 45
                         self.boat4.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
                 elif keys[pygame.K_d]:
                     self.boat4.x += 45
@@ -833,6 +855,7 @@ class Player():
                     if self.boat4.x > 1356:
                         self.boat4.x -= 45
                         self.boat4.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
                 elif keys[pygame.K_s]:
                     self.boat4.y += 45
@@ -840,6 +863,7 @@ class Player():
                     if self.boat4.y > 865:
                         self.boat4.y -= 45
                         self.boat4.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
                 elif keys[pygame.K_w]:
                     self.boat4.y -= 45
@@ -847,6 +871,7 @@ class Player():
                     if self.boat4.y < 100:
                         self.boat4.y += 45
                         self.boat4.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
         elif self.boat_move == 5 and self.boat5.defense == False and self.boat5.health != 0:
             self.boat5.c = colors.bright_red
@@ -858,6 +883,7 @@ class Player():
                     if self.boat5.x < 500:
                         self.boat5.x += 45
                         self.boat5.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
                 elif keys[pygame.K_d]:
                     self.boat5.x += 45
@@ -865,6 +891,7 @@ class Player():
                     if self.boat5.x > 1356:
                         self.boat5.x -= 45
                         self.boat5.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
                 elif keys[pygame.K_s]:
                     self.boat5.y += 45
@@ -872,6 +899,7 @@ class Player():
                     if self.boat5.y > 865:
                         self.boat5.y -= 45
                         self.boat5.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
                 elif keys[pygame.K_w]:
                     self.boat5.y -= 45
@@ -879,6 +907,7 @@ class Player():
                     if self.boat5.y < 100:
                         self.boat5.y += 45
                         self.boat5.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
         elif self.boat_move == 6 and self.boat6.defense == False and self.boat6.health != 0:
             self.boat6.c = colors.bright_blue
@@ -890,6 +919,7 @@ class Player():
                     if self.boat6.x < 500:
                         self.boat6.x += 45
                         self.boat6.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
                 elif keys[pygame.K_d]:
                     self.boat6.x += 45
@@ -897,6 +927,7 @@ class Player():
                     if self.boat6.x > 1356:
                         self.boat6.x -= 45
                         self.boat6.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
                 elif keys[pygame.K_s]:
                     self.boat6.y += 45
@@ -904,6 +935,7 @@ class Player():
                     if self.boat6.y > 865:
                         self.boat6.y -= 45
                         self.boat6.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
                 elif keys[pygame.K_w]:
                     self.boat6.y -= 45
@@ -911,6 +943,7 @@ class Player():
                     if self.boat6.y < 100:
                         self.boat6.y += 45
                         self.boat6.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
         elif self.boat_move == 7 and self.boat7.defense == False and self.boat7.health != 0:
             self.boat7.c = colors.bright_red
@@ -922,6 +955,7 @@ class Player():
                     if self.boat7.x < 500:
                         self.boat7.x += 45
                         self.boat7.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
                 elif keys[pygame.K_d]:
                     self.boat7.x += 45
@@ -929,6 +963,7 @@ class Player():
                     if self.boat7.x > 1356:
                         self.boat7.x -= 45
                         self.boat7.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
                 elif keys[pygame.K_s]:
                     self.boat7.y += 45
@@ -936,6 +971,7 @@ class Player():
                     if self.boat7.y > 820:
                         self.boat7.y -= 45
                         self.boat7.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
                 elif keys[pygame.K_w]:
                     self.boat7.y -= 45
@@ -943,6 +979,7 @@ class Player():
                     if self.boat7.y < 100:
                         self.boat7.y += 45
                         self.boat7.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
         elif self.boat_move == 8 and self.boat8.defense == False and self.boat8.health != 0:
             self.boat8.c = colors.bright_blue
@@ -954,6 +991,7 @@ class Player():
                     if self.boat8.x < 500:
                         self.boat8.x += 45
                         self.boat8.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
                 elif keys[pygame.K_d]:
                     self.boat8.x += 45
@@ -961,6 +999,7 @@ class Player():
                     if self.boat8.x > 1356:
                         self.boat8.x -= 45
                         self.boat8.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
                 elif keys[pygame.K_s]:
                     self.boat8.y += 45
@@ -968,6 +1007,7 @@ class Player():
                     if self.boat8.y > 820:
                         self.boat8.y -= 45
                         self.boat8.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
                 elif keys[pygame.K_w]:
                     self.boat8.y -= 45
@@ -975,6 +1015,7 @@ class Player():
                     if self.boat8.y < 100:
                         self.boat8.y += 45
                         self.boat8.moves +=1
+                    wow.play(loops = 0)
                     time.sleep(0.2)
 
     def turnturn1(self):
@@ -1613,164 +1654,260 @@ class Player():
                     self.boat2.health -= 1
                     self.boat1.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat2.health == 0:
+                        mom.play(loops = 0)
             if self.boat_attack == 1 and self.boat1.attack != 0 and self.player_attack != 0 and self.boat2.defense == True and self.boat2.health != 0 or self.boat_attack == 2 and self.boat1.attack != 0 and self.player_attack != 0 and self.boat2.defense == True and self.boat2.health != 0:
                 if x+44 > self.boat2.x + 22 > x and y+44 > self.boat2.y + 22 > y or x+44 > self.boat2.x + 67 > x and y+44 > self.boat2.y + 22 > y:
                     self.boat2.health -= 1
                     self.boat1.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat2.health == 0:
+                        mom.play(loops = 0)
             if self.boat_attack == 1 and self.boat1.attack != 0 and self.player_attack != 0 and self.boat4.defense == False and self.boat4.health != 0 or self.boat_attack == 2 and self.boat1.attack != 0 and self.player_attack != 0 and self.boat4.defense == False and self.boat4.health != 0:
                 if x+44 > self.boat4.x + 22 > x and y+44 > self.boat4.y + 22 > y or x+44 > self.boat4.x + 22 > x and y+44 > self.boat4.y + 67 > y or x+44 > self.boat4.x + 22 > x and y+44 > self.boat4.y + 112 > y:
                     self.boat4.health -= 1
                     self.boat1.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat4.health == 0:
+                        mom.play(loops = 0)
             if self.boat_attack == 1 and self.boat1.attack != 0 and self.player_attack != 0 and self.boat4.defense == True and self.boat4.health != 0 or self.boat_attack == 2 and self.boat1.attack != 0 and self.player_attack != 0 and self.boat4.defense == True and self.boat4.health != 0:
                 if x+44 > self.boat4.x + 22 > x and y+44 > self.boat4.y + 22 > y or x+44 > self.boat4.x + 67 > x and y+44 > self.boat4.y + 22 > y or x+44 > self.boat4.x + 112 > x and y+44 > self.boat4.y + 22 > y:
                     self.boat4.health -= 1
                     self.boat1.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat4.health == 0:
+                        mom.play(loops = 0)
             if self.boat_attack == 1 and self.boat1.attack != 0 and self.player_attack != 0 and self.boat6.defense == False and self.boat6.health != 0 or self.boat_attack == 2 and self.boat1.attack != 0 and self.player_attack != 0 and self.boat6.defense == False and self.boat6.health != 0:
                 if x+44 > self.boat6.x + 22 > x and y+44 > self.boat6.y + 22 > y or x+44 > self.boat6.x + 22 > x and y+44 > self.boat6.y + 67 > y or x+44 > self.boat6.x + 22 > x and y+44 > self.boat6.y + 112 > y:
                     self.boat6.health -= 1
                     self.boat1.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat6.health == 0:
+                        mom.play(loops =0)
             if self.boat_attack == 1 and self.boat1.attack != 0 and self.player_attack != 0 and self.boat6.defense == True and self.boat6.health != 0 or self.boat_attack == 2 and self.boat1.attack != 0 and self.player_attack != 0 and self.boat6.defense == True and self.boat6.health != 0:
                 if x+44 > self.boat6.x + 22 > x and y+44 > self.boat6.y + 22 > y or x+44 > self.boat6.x + 67 > x and y+44 > self.boat6.y + 22 > y or x+44 > self.boat6.x + 112 > x and y+44 > self.boat6.y + 22 > y:
                     self.boat6.health -= 1
                     self.boat1.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat6.health == 0:
+                        mom.play(loops = 0)
             if self.boat_attack == 1 and self.boat1.attack != 0 and self.player_attack != 0 and self.boat8.defense == False and self.boat8.health != 0 or self.boat_attack == 2 and self.boat1.attack != 0 and self.player_attack != 0 and self.boat8.defense == False and self.boat8.health != 0:
                 if x+44 > self.boat8.x + 22 > x and y+44 > self.boat8.y + 22 > y or x+44 > self.boat8.x + 22 > x and y+44 > self.boat8.y + 67 > y or x+44 > self.boat8.x + 22 > x and y+44 > self.boat8.y + 112 > y or x+44 > self.boat8.x + 22 > x and y+44 > self.boat8.y + 157 > y:
                     self.boat8.health -= 1
                     self.boat1.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat8.health == 0:
+                        mom.play(loops = 0)
             if self.boat_attack == 1 and self.boat1.attack != 0 and self.player_attack != 0 and self.boat8.defense == True and self.boat8.health != 0 or self.boat_attack == 2 and self.boat1.attack != 0 and self.player_attack != 0 and self.boat8.defense == True and self.boat8.health != 0:
                 if x+44 > self.boat8.x + 22 > x and y+44 > self.boat8.y + 22 > y or x+44 > self.boat8.x + 67 > x and y+44 > self.boat8.y + 22 > y or x+44 > self.boat8.x + 112 > x and y+44 > self.boat8.y + 22 > y or x+44 > self.boat8.x + 157 > x and y+44 > self.boat8.y + 22 > y:
                     self.boat8.health -= 1
                     self.boat1.attack -= 1
-                    self.player_attack -= 1    
+                    self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat8.health == 0:
+                        mom.play(loops = 0)    
 
             if self.boat_attack == 5 and self.boat3.attack != 0 and self.player_attack != 0 and self.boat2.defense == False and self.boat2.health != 0 or self.boat_attack == 6 and self.boat3.attack != 0 and self.player_attack != 0 and self.boat2.defense == False and self.boat2.health != 0:
                 if x+44 > self.boat2.x + 22 > x and y+44 > self.boat2.y + 22 > y or x+44 > self.boat2.x + 22 > x and y+44 > self.boat2.y + 67 > y:
                     self.boat2.health -= 1
                     self.boat3.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat2.health == 0:
+                        mom.play(loops = 0)
             if self.boat_attack == 5 and self.boat3.attack != 0 and self.player_attack != 0 and self.boat2.defense == True and self.boat2.health != 0 or self.boat_attack == 6 and self.boat3.attack != 0 and self.player_attack != 0 and self.boat2.defense == True and self.boat2.health != 0:
                 if x+44 > self.boat2.x + 22 > x and y+44 > self.boat2.y + 22 > y or x+44 > self.boat2.x + 67 > x and y+44 > self.boat2.y + 22 > y:
                     self.boat2.health -= 1
                     self.boat3.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat2.health == 0:
+                        mom.play(loops = 0)
             if self.boat_attack == 5 and self.boat3.attack != 0 and self.player_attack != 0 and self.boat4.defense == False and self.boat4.health != 0 or self.boat_attack == 6 and self.boat3.attack != 0 and self.player_attack != 0 and self.boat4.defense == False and self.boat4.health != 0:
                 if x+44 > self.boat4.x + 22 > x and y+44 > self.boat4.y + 22 > y or x+44 > self.boat4.x + 22 > x and y+44 > self.boat4.y + 67 > y or x+44 > self.boat4.x + 22 > x and y+44 > self.boat4.y + 112 > y:
                     self.boat4.health -= 1
                     self.boat3.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat4.health == 0:
+                        mom.play(loops = 0)
             if self.boat_attack == 5 and self.boat3.attack != 0 and self.player_attack != 0 and self.boat4.defense == True and self.boat4.health != 0 or self.boat_attack == 6 and self.boat3.attack != 0 and self.player_attack != 0 and self.boat4.defense == True and self.boat4.health != 0:
                 if x+44 > self.boat4.x + 22 > x and y+44 > self.boat4.y + 22 > y or x+44 > self.boat4.x + 67 > x and y+44 > self.boat4.y + 22 > y or x+44 > self.boat4.x + 112 > x and y+44 > self.boat4.y + 22 > y:
                     self.boat4.health -= 1
                     self.boat3.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat4.health == 0:
+                        mom.play(loops = 0)
             if self.boat_attack == 5 and self.boat3.attack != 0 and self.player_attack != 0 and self.boat6.defense == False and self.boat6.health != 0 or self.boat_attack == 6 and self.boat3.attack != 0 and self.player_attack != 0 and self.boat6.defense == False and self.boat6.health != 0:
                 if x+44 > self.boat6.x + 22 > x and y+44 > self.boat6.y + 22 > y or x+44 > self.boat6.x + 22 > x and y+44 > self.boat6.y + 67 > y or x+44 > self.boat6.x + 22 > x and y+44 > self.boat6.y + 112 > y:
                     self.boat6.health -= 1
                     self.boat3.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat6.health == 0:
+                        mom.play(loops = 0)
             if self.boat_attack == 5 and self.boat3.attack != 0 and self.player_attack != 0 and self.boat6.defense == True and self.boat6.health != 0 or self.boat_attack == 6 and self.boat3.attack != 0 and self.player_attack != 0 and self.boat6.defense == True and self.boat6.health != 0:
                 if x+44 > self.boat6.x + 22 > x and y+44 > self.boat6.y + 22 > y or x+44 > self.boat6.x + 67 > x and y+44 > self.boat6.y + 22 > y or x+44 > self.boat6.x + 112 > x and y+44 > self.boat6.y + 22 > y:
                     self.boat6.health -= 1
                     self.boat3.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat6.health == 0:
+                        mom.play(loops = 0)
             if self.boat_attack == 5 and self.boat3.attack != 0 and self.player_attack != 0 and self.boat8.defense == False and self.boat8.health != 0 or self.boat_attack == 6 and self.boat3.attack != 0 and self.player_attack != 0 and self.boat8.defense == False and self.boat8.health != 0:
                 if x+44 > self.boat8.x + 22 > x and y+44 > self.boat8.y + 22 > y or x+44 > self.boat8.x + 22 > x and y+44 > self.boat8.y + 67 > y or x+44 > self.boat8.x + 22 > x and y+44 > self.boat8.y + 112 > y or x+44 > self.boat8.x + 22 > x and y+44 > self.boat8.y + 157 > y:
                     self.boat8.health -= 1
                     self.boat3.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat8.health == 0:
+                        mom.play(loops = 0)
             if self.boat_attack == 5 and self.boat3.attack != 0 and self.player_attack != 0 and self.boat8.defense == True and self.boat8.health != 0 or self.boat_attack == 6 and self.boat3.attack != 0 and self.player_attack != 0 and self.boat8.defense == True and self.boat8.health != 0:
                 if x+44 > self.boat8.x + 22 > x and y+44 > self.boat8.y + 22 > y or x+44 > self.boat8.x + 67 > x and y+44 > self.boat8.y + 22 > y or x+44 > self.boat8.x + 112 > x and y+44 > self.boat8.y + 22 > y or x+44 > self.boat8.x + 157 > x and y+44 > self.boat8.y + 22 > y:
                     self.boat8.health -= 1
                     self.boat3.attack -= 1
                     self.player_attack -= 1    
+                    hitmark.play(loops = 0)
+                    if self.boat8.health == 0:
+                        mom.play(loops = 0)
 
             if self.boat_attack == 9 and self.boat5.attack != 0 and self.player_attack != 0 and self.boat2.defense == False and self.boat2.health != 0 or self.boat_attack == 10 and self.boat5.attack != 0 and self.player_attack != 0 and self.boat2.defense == False and self.boat2.health != 0:
                 if x+44 > self.boat2.x + 22 > x and y+44 > self.boat2.y + 22 > y or x+44 > self.boat2.x + 22 > x and y+44 > self.boat2.y + 67 > y:
                     self.boat2.health -= 1
                     self.boat5.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat2.health == 0:
+                        mom.play(loops = 0)
             if self.boat_attack == 9 and self.boat5.attack != 0 and self.player_attack != 0 and self.boat2.defense == True and self.boat2.health != 0 or self.boat_attack == 10 and self.boat5.attack != 0 and self.player_attack != 0 and self.boat2.defense == True and self.boat2.health != 0:
                 if x+44 > self.boat2.x + 22 > x and y+44 > self.boat2.y + 22 > y or x+44 > self.boat2.x + 67 > x and y+44 > self.boat2.y + 22 > y:
                     self.boat2.health -= 1
                     self.boat5.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat2.health == 0:
+                        mom.play(loops = 0)
             if self.boat_attack == 9 and self.boat5.attack != 0 and self.player_attack != 0 and self.boat4.defense == False and self.boat4.health != 0 or self.boat_attack == 10 and self.boat5.attack != 0 and self.player_attack != 0 and self.boat4.defense == False and self.boat4.health != 0:
                 if x+44 > self.boat4.x + 22 > x and y+44 > self.boat4.y + 22 > y or x+44 > self.boat4.x + 22 > x and y+44 > self.boat4.y + 67 > y or x+44 > self.boat4.x + 22 > x and y+44 > self.boat4.y + 112 > y:
                     self.boat4.health -= 1
                     self.boat5.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat4.health == 0:
+                        mom.play(loops = 0)
             if self.boat_attack == 9 and self.boat5.attack != 0 and self.player_attack != 0 and self.boat4.defense == True and self.boat4.health != 0 or self.boat_attack == 10 and self.boat5.attack != 0 and self.player_attack != 0 and self.boat4.defense == True and self.boat4.health != 0:
                 if x+44 > self.boat4.x + 22 > x and y+44 > self.boat4.y + 22 > y or x+44 > self.boat4.x + 67 > x and y+44 > self.boat4.y + 22 > y or x+44 > self.boat4.x + 112 > x and y+44 > self.boat4.y + 22 > y:
                     self.boat4.health -= 1
                     self.boat5.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat4.health == 0:
+                        mom.play(loops = 0)
             if self.boat_attack == 9 and self.boat5.attack != 0 and self.player_attack != 0 and self.boat6.defense == False and self.boat6.health != 0 or self.boat_attack == 10 and self.boat5.attack != 0 and self.player_attack != 0 and self.boat6.defense == False and self.boat6.health != 0:
                 if x+44 > self.boat6.x + 22 > x and y+44 > self.boat6.y + 22 > y or x+44 > self.boat6.x + 22 > x and y+44 > self.boat6.y + 67 > y or x+44 > self.boat6.x + 22 > x and y+44 > self.boat6.y + 112 > y:
                     self.boat6.health -= 1
                     self.boat5.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat6.health == 0:
+                        mom.play(loops = 0)
             if self.boat_attack == 9 and self.boat5.attack != 0 and self.player_attack != 0 and self.boat6.defense == True and self.boat6.health != 0 or self.boat_attack == 10 and self.boat5.attack != 0 and self.player_attack != 0 and self.boat6.defense == True and self.boat6.health != 0:
                 if x+44 > self.boat6.x + 22 > x and y+44 > self.boat6.y + 22 > y or x+44 > self.boat6.x + 67 > x and y+44 > self.boat6.y + 22 > y or x+44 > self.boat6.x + 112 > x and y+44 > self.boat6.y + 22 > y:
                     self.boat6.health -= 1
                     self.boat5.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat6.health == 0:
+                        mom.play(loops = 0)
             if self.boat_attack == 9 and self.boat5.attack != 0 and self.player_attack != 0 and self.boat8.defense == False and self.boat8.health != 0 or self.boat_attack == 10 and self.boat5.attack != 0 and self.player_attack != 0 and self.boat8.defense == False and self.boat8.health != 0:
                 if x+44 > self.boat8.x + 22 > x and y+44 > self.boat8.y + 22 > y or x+44 > self.boat8.x + 22 > x and y+44 > self.boat8.y + 67 > y or x+44 > self.boat8.x + 22 > x and y+44 > self.boat8.y + 112 > y or x+44 > self.boat8.x + 22 > x and y+44 > self.boat8.y + 157 > y:
                     self.boat8.health -= 1
                     self.boat5.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat8.health == 0:
+                        mom.play(loops =0)
             if self.boat_attack == 9 and self.boat5.attack != 0 and self.player_attack != 0 and self.boat8.defense == True and self.boat8.health != 0 or self.boat_attack == 10 and self.boat5.attack != 0 and self.player_attack != 0 and self.boat8.defense == True and self.boat8.health != 0:
                 if x+44 > self.boat8.x + 22 > x and y+44 > self.boat8.y + 22 > y or x+44 > self.boat8.x + 67 > x and y+44 > self.boat8.y + 22 > y or x+44 > self.boat8.x + 112 > x and y+44 > self.boat8.y + 22 > y or x+44 > self.boat8.x + 157 > x and y+44 > self.boat8.y + 22 > y:
                     self.boat8.health -= 1
                     self.boat5.attack -= 1
-                    self.player_attack -= 1    
+                    self.player_attack -= 1 
+                    hitmark.play(loops = 0) 
+                    if self.boat8.health == 0:
+                        mom.play(loops = 0)  
 
             if self.boat_attack == 13 and self.boat7.attack != 0 and self.player_attack != 0 and self.boat2.defense == False and self.boat2.health != 0 or self.boat_attack == 14 and self.boat7.attack != 0 and self.player_attack != 0 and self.boat2.defense == False and self.boat2.health != 0:
                 if x+44 > self.boat2.x + 22 > x and y+44 > self.boat2.y + 22 > y or x+44 > self.boat2.x + 22 > x and y+44 > self.boat2.y + 67 > y:
                     self.boat2.health -= 1
                     self.boat7.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat2.health == 0:
+                        mom.play(loops = 0)
             if self.boat_attack == 13 and self.boat7.attack != 0 and self.player_attack != 0 and self.boat2.defense == True and self.boat2.health != 0 or self.boat_attack == 14 and self.boat7.attack != 0 and self.player_attack != 0 and self.boat2.defense == True and self.boat2.health != 0:
                 if x+44 > self.boat2.x + 22 > x and y+44 > self.boat2.y + 22 > y or x+44 > self.boat2.x + 67 > x and y+44 > self.boat2.y + 22 > y:
                     self.boat2.health -= 1
                     self.boat7.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat2.health == 0:
+                        mom.play(loops = 0)
             if self.boat_attack == 13 and self.boat7.attack != 0 and self.player_attack != 0 and self.boat4.defense == False and self.boat4.health != 0 or self.boat_attack == 14 and self.boat7.attack != 0 and self.player_attack != 0 and self.boat4.defense == False and self.boat4.health != 0:
                 if x+44 > self.boat4.x + 22 > x and y+44 > self.boat4.y + 22 > y or x+44 > self.boat4.x + 22 > x and y+44 > self.boat4.y + 67 > y or x+44 > self.boat4.x + 22 > x and y+44 > self.boat4.y + 112 > y:
                     self.boat4.health -= 1
                     self.boat7.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat4.health == 0:
+                        mom.play(loops = 0)
             if self.boat_attack == 13 and self.boat7.attack != 0 and self.player_attack != 0 and self.boat4.defense == True and self.boat4.health != 0 or self.boat_attack == 14 and self.boat7.attack != 0 and self.player_attack != 0 and self.boat4.defense == True and self.boat4.health != 0:
                 if x+44 > self.boat4.x + 22 > x and y+44 > self.boat4.y + 22 > y or x+44 > self.boat4.x + 67 > x and y+44 > self.boat4.y + 22 > y or x+44 > self.boat4.x + 112 > x and y+44 > self.boat4.y + 22 > y:
                     self.boat4.health -= 1
                     self.boat7.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat4.health == 0:
+                        mom.play(loops = 0)
             if self.boat_attack == 13 and self.boat7.attack != 0 and self.player_attack != 0 and self.boat6.defense == False and self.boat6.health != 0 or self.boat_attack == 14 and self.boat7.attack != 0 and self.player_attack != 0 and self.boat6.defense == False and self.boat6.health != 0:
                 if x+44 > self.boat6.x + 22 > x and y+44 > self.boat6.y + 22 > y or x+44 > self.boat6.x + 22 > x and y+44 > self.boat6.y + 67 > y or x+44 > self.boat6.x + 22 > x and y+44 > self.boat6.y + 112 > y:
                     self.boat6.health -= 1
                     self.boat7.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat6.health == 0:
+                        mom.play(loops = 0)
             if self.boat_attack == 13 and self.boat7.attack != 0 and self.player_attack != 0 and self.boat6.defense == True and self.boat6.health != 0 or self.boat_attack == 14 and self.boat7.attack != 0 and self.player_attack != 0 and self.boat6.defense == True and self.boat6.health != 0:
                 if x+44 > self.boat6.x + 22 > x and y+44 > self.boat6.y + 22 > y or x+44 > self.boat6.x + 67 > x and y+44 > self.boat6.y + 22 > y or x+44 > self.boat6.x + 112 > x and y+44 > self.boat6.y + 22 > y:
                     self.boat6.health -= 1
                     self.boat7.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat6.health == 0:
+                        mom.play(loops = 0)
             if self.boat_attack == 13 and self.boat7.attack != 0 and self.player_attack != 0 and self.boat8.defense == False and self.boat8.health != 0 or self.boat_attack == 14 and self.boat7.attack != 0 and self.player_attack != 0 and self.boat8.defense == False and self.boat8.health != 0:
                 if x+44 > self.boat8.x + 22 > x and y+44 > self.boat8.y + 22 > y or x+44 > self.boat8.x + 22 > x and y+44 > self.boat8.y + 67 > y or x+44 > self.boat8.x + 22 > x and y+44 > self.boat8.y + 112 > y or x+44 > self.boat8.x + 22 > x and y+44 > self.boat8.y + 157 > y:
                     self.boat8.health -= 1
                     self.boat7.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat8.health == 0:
+                        mom.play(loops = 0)  
             if self.boat_attack == 13 and self.boat7.attack != 0 and self.player_attack != 0 and self.boat8.defense == True and self.boat8.health != 0 or self.boat_attack == 14 and self.boat7.attack != 0 and self.player_attack != 0 and self.boat8.defense == True and self.boat8.health != 0:
                 if x+44 > self.boat8.x + 22 > x and y+44 > self.boat8.y + 22 > y or x+44 > self.boat8.x + 67 > x and y+44 > self.boat8.y + 22 > y or x+44 > self.boat8.x + 112 > x and y+44 > self.boat8.y + 22 > y or x+44 > self.boat8.x + 157 > x and y+44 > self.boat8.y + 22 > y:
                     self.boat8.health -= 1
                     self.boat7.attack -= 1
-                    self.player_attack -= 1    
+                    self.player_attack -= 1   
+                    hitmark.play(loops = 0)
+                    if self.boat8.health == 0:
+                        mom.play(loops = 0)  
                     
 
             if self.boat_attack == 3 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat1.defense == False and self.boat1.health != 0 or self.boat_attack == 4 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat1.defense == False and self.boat1.health != 0:
@@ -1778,207 +1915,272 @@ class Player():
                     self.boat1.health -= 1
                     self.boat2.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat1.health == 0:
+                        mom.play(loops = 0)  
             if self.boat_attack == 3 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat1.defense == True and self.boat1.health != 0 or self.boat_attack == 4 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat1.defense == True and self.boat1.health != 0:
                 if x+44 > self.boat1.x + 22 > x and y+44 > self.boat1.y + 22 > y or x+44 > self.boat1.x + 67 > x and y+44 > self.boat1.y + 22 > y:
                     self.boat1.health -= 1
                     self.boat2.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat1.health == 0:
+                        mom.play(loops = 0)  
             if self.boat_attack == 3 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat3.defense == False and self.boat3.health != 0 or self.boat_attack == 4 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat3.defense == False and self.boat3.health != 0:
                 if x+44 > self.boat3.x + 22 > x and y+44 > self.boat3.y + 22 > y or x+44 > self.boat3.x + 22 > x and y+44 > self.boat3.y + 67 > y or x+44 > self.boat3.x + 22 > x and y+44 > self.boat3.y + 112 > y:
                     self.boat3.health -= 1
                     self.boat2.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat3.health == 0:
+                        mom.play(loops = 0)  
             if self.boat_attack == 3 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat3.defense == True and self.boat3.health != 0 or self.boat_attack == 4 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat3.defense == True and self.boat3.health != 0:
                 if x+44 > self.boat3.x + 22 > x and y+44 > self.boat3.y + 22 > y or x+44 > self.boat3.x + 67 > x and y+44 > self.boat3.y + 22 > y or x+44 > self.boat3.x + 112 > x and y+44 > self.boat3.y + 22 > y:
                     self.boat3.health -= 1
                     self.boat2.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat3.health == 0:
+                        mom.play(loops = 0) 
             if self.boat_attack == 3 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat5.defense == False and self.boat5.health != 0 or self.boat_attack == 4 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat5.defense == False and self.boat5.health != 0:
                 if x+44 > self.boat5.x + 22 > x and y+44 > self.boat5.y + 22 > y or x+44 > self.boat5.x + 22 > x and y+44 > self.boat5.y + 67 > y or x+44 > self.boat5.x + 22 > x and y+44 > self.boat5.y + 112 > y:
                     self.boat5.health -= 1
                     self.boat2.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat5.health == 0:
+                        mom.play(loops = 0) 
             if self.boat_attack == 3 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat5.defense == True and self.boat5.health != 0 or self.boat_attack == 4 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat5.defense == True and self.boat5.health != 0:
                 if x+44 > self.boat5.x + 22 > x and y+44 > self.boat5.y + 22 > y or x+44 > self.boat5.x + 67 > x and y+44 > self.boat5.y + 22 > y or x+44 > self.boat5.x + 112 > x and y+44 > self.boat5.y + 22 > y:
                     self.boat5.health -= 1
                     self.boat2.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat5.health == 0:
+                        mom.play(loops = 0) 
             if self.boat_attack == 3 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat7.defense == False and self.boat7.health != 0 or self.boat_attack == 4 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat7.defense == False and self.boat7.health != 0:
                 if x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 22 > y or x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 67 > y or x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 112 > y or x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 157 > y:
                     self.boat7.health -= 1
                     self.boat2.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat7.health == 0:
+                        mom.play(loops = 0) 
             if self.boat_attack == 3 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat7.defense == True and self.boat7.health != 0 or self.boat_attack == 4 and self.boat2.attack != 0 and self.player_attack != 0 and self.boat7.defense == True and self.boat7.health != 0:
                 if x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 22 > y or x+44 > self.boat7.x + 67 > x and y+44 > self.boat7.y + 22 > y or x+44 > self.boat7.x + 112 > x and y+44 > self.boat7.y + 22 > y or x+44 > self.boat7.x + 157 > x and y+44 > self.boat7.y + 22 > y:
                     self.boat7.health -= 1
                     self.boat2.attack -= 1
-                    self.player_attack -= 1    
+                    self.player_attack -= 1   
+                    hitmark.play(loops = 0) 
+                    if self.boat7.health == 0:
+                        mom.play(loops = 0) 
+
 
             if self.boat_attack == 7 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat1.defense == False and self.boat1.health != 0 or self.boat_attack == 8 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat1.defense == False and self.boat1.health != 0:
                 if x+44 > self.boat1.x + 22 > x and y+44 > self.boat1.y + 22 > y or x+44 > self.boat1.x + 22 > x and y+44 > self.boat1.y + 67 > y:
                     self.boat1.health -= 1
                     self.boat4.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat1.health == 0:
+                        mom.play(loops = 0)  
             if self.boat_attack == 7 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat1.defense == True and self.boat1.health != 0 or self.boat_attack == 8 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat1.defense == True and self.boat1.health != 0:
                 if x+44 > self.boat1.x + 22 > x and y+44 > self.boat1.y + 22 > y or x+44 > self.boat1.x + 67 > x and y+44 > self.boat1.y + 22 > y:
                     self.boat1.health -= 1
                     self.boat4.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat1.health == 0:
+                        mom.play(loops = 0)  
             if self.boat_attack == 7 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat3.defense == False and self.boat3.health != 0 or self.boat_attack == 8 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat3.defense == False and self.boat3.health != 0:
                 if x+44 > self.boat3.x + 22 > x and y+44 > self.boat3.y + 22 > y or x+44 > self.boat3.x + 22 > x and y+44 > self.boat3.y + 67 > y or x+44 > self.boat3.x + 22 > x and y+44 > self.boat3.y + 112 > y:
                     self.boat3.health -= 1
                     self.boat4.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat3.health == 0:
+                        mom.play(loops = 0) 
             if self.boat_attack == 7 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat3.defense == True and self.boat3.health != 0 or self.boat_attack == 8 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat3.defense == True and self.boat3.health != 0:
                 if x+44 > self.boat3.x + 22 > x and y+44 > self.boat3.y + 22 > y or x+44 > self.boat3.x + 67 > x and y+44 > self.boat3.y + 22 > y or x+44 > self.boat3.x + 112 > x and y+44 > self.boat3.y + 22 > y:
                     self.boat3.health -= 1
                     self.boat4.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat3.health == 0:
+                        mom.play(loops = 0) 
             if self.boat_attack == 7 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat5.defense == False and self.boat5.health != 0 or self.boat_attack == 8 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat5.defense == False and self.boat5.health != 0:
                 if x+44 > self.boat5.x + 22 > x and y+44 > self.boat5.y + 22 > y or x+44 > self.boat5.x + 22 > x and y+44 > self.boat5.y + 67 > y or x+44 > self.boat5.x + 22 > x and y+44 > self.boat5.y + 112 > y:
                     self.boat5.health -= 1
                     self.boat4.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat5.health == 0:
+                        mom.play(loops = 0) 
             if self.boat_attack == 7 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat5.defense == True and self.boat5.health != 0 or self.boat_attack == 8 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat5.defense == True and self.boat5.health != 0:
                 if x+44 > self.boat5.x + 22 > x and y+44 > self.boat5.y + 22 > y or x+44 > self.boat5.x + 67 > x and y+44 > self.boat5.y + 22 > y or x+44 > self.boat5.x + 112 > x and y+44 > self.boat5.y + 22 > y:
                     self.boat5.health -= 1
                     self.boat4.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat5.health == 0:
+                        mom.play(loops = 0) 
             if self.boat_attack == 7 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat7.defense == False and self.boat7.health != 0 or self.boat_attack == 8 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat7.defense == False and self.boat7.health != 0:
                 if x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 22 > y or x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 67 > y or x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 112 > y or x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 157 > y:
                     self.boat7.health -= 1
                     self.boat4.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat7.health == 0:
+                        mom.play(loops = 0) 
             if self.boat_attack == 7 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat7.defense == True and self.boat7.health != 0 or self.boat_attack == 8 and self.boat4.attack != 0 and self.player_attack != 0 and self.boat7.defense == True and self.boat7.health != 0:
                 if x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 22 > y or x+44 > self.boat7.x + 67 > x and y+44 > self.boat7.y + 22 > y or x+44 > self.boat7.x + 112 > x and y+44 > self.boat7.y + 22 > y or x+44 > self.boat7.x + 157 > x and y+44 > self.boat7.y + 22 > y:
                     self.boat7.health -= 1
                     self.boat4.attack -= 1
-                    self.player_attack -= 1    
+                    self.player_attack -= 1
+                    hitmark.play(loops = 0)  
+                    if self.boat7.health == 0:
+                        mom.play(loops = 0)   
 
             if self.boat_attack == 11 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat1.defense == False and self.boat1.health != 0 or self.boat_attack == 12 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat1.defense == False and self.boat1.health != 0:
                 if x+44 > self.boat1.x + 22 > x and y+44 > self.boat1.y + 22 > y or x+44 > self.boat1.x + 22 > x and y+44 > self.boat1.y + 67 > y:
                     self.boat1.health -= 1
                     self.boat6.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat1.health == 0:
+                        mom.play(loops = 0)  
             if self.boat_attack == 11 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat1.defense == True and self.boat1.health != 0 or self.boat_attack == 12 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat1.defense == True and self.boat1.health != 0:
                 if x+44 > self.boat1.x + 22 > x and y+44 > self.boat1.y + 22 > y or x+44 > self.boat1.x + 67 > x and y+44 > self.boat1.y + 22 > y:
                     self.boat1.health -= 1
                     self.boat6.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat1.health == 0:
+                        mom.play(loops = 0)  
             if self.boat_attack == 11 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat3.defense == False and self.boat3.health != 0 or self.boat_attack == 12 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat3.defense == False and self.boat3.health != 0:
                 if x+44 > self.boat3.x + 22 > x and y+44 > self.boat3.y + 22 > y or x+44 > self.boat3.x + 22 > x and y+44 > self.boat3.y + 67 > y or x+44 > self.boat3.x + 22 > x and y+44 > self.boat3.y + 112 > y:
                     self.boat3.health -= 1
                     self.boat6.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat3.health == 0:
+                        mom.play(loops = 0) 
             if self.boat_attack == 11 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat3.defense == True and self.boat3.health != 0 or self.boat_attack == 12 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat3.defense == True and self.boat3.health != 0:
                 if x+44 > self.boat3.x + 22 > x and y+44 > self.boat3.y + 22 > y or x+44 > self.boat3.x + 67 > x and y+44 > self.boat3.y + 22 > y or x+44 > self.boat3.x + 112 > x and y+44 > self.boat3.y + 22 > y:
                     self.boat3.health -= 1
                     self.boat6.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat3.health == 0:
+                        mom.play(loops = 0) 
             if self.boat_attack == 11 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat5.defense == False and self.boat5.health != 0 or self.boat_attack == 12 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat5.defense == False and self.boat5.health != 0:
                 if x+44 > self.boat5.x + 22 > x and y+44 > self.boat5.y + 22 > y or x+44 > self.boat5.x + 22 > x and y+44 > self.boat5.y + 67 > y or x+44 > self.boat5.x + 22 > x and y+44 > self.boat5.y + 112 > y:
                     self.boat5.health -= 1
                     self.boat6.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat5.health == 0:
+                        mom.play(loops = 0) 
             if self.boat_attack == 11 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat5.defense == True and self.boat5.health != 0 or self.boat_attack == 12 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat5.defense == True and self.boat5.health != 0:
                 if x+44 > self.boat5.x + 22 > x and y+44 > self.boat5.y + 22 > y or x+44 > self.boat5.x + 67 > x and y+44 > self.boat5.y + 22 > y or x+44 > self.boat5.x + 112 > x and y+44 > self.boat5.y + 22 > y:
                     self.boat5.health -= 1
                     self.boat6.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat5.health == 0:
+                        mom.play(loops = 0) 
             if self.boat_attack == 11 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat7.defense == False and self.boat7.health != 0 or self.boat_attack == 12 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat7.defense == False and self.boat7.health != 0:
                 if x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 22 > y or x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 67 > y or x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 112 > y or x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 157 > y:
                     self.boat7.health -= 1
                     self.boat6.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat7.health == 0:
+                        mom.play(loops = 0)   
             if self.boat_attack == 11 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat7.defense == True and self.boat7.health != 0 or self.boat_attack == 12 and self.boat6.attack != 0 and self.player_attack != 0 and self.boat7.defense == True and self.boat7.health != 0:
                 if x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 22 > y or x+44 > self.boat7.x + 67 > x and y+44 > self.boat7.y + 22 > y or x+44 > self.boat7.x + 112 > x and y+44 > self.boat7.y + 22 > y or x+44 > self.boat7.x + 157 > x and y+44 > self.boat7.y + 22> y:
                     self.boat7.health -= 1
                     self.boat6.attack -= 1
-                    self.player_attack -= 1    
+                    self.player_attack -= 1
+                    hitmark.play(loops = 0)   
+                    if self.boat7.health == 0:
+                        mom.play(loops = 0)    
 
             if self.boat_attack == 15 and self.boat8.attack != 0 and self.player_attack != 0 and self.boat1.defense == False and self.boat1.health != 0 or self.boat_attack == 16 and self.boat8.attack != 0 and self.player_attack != 0 and self.boat1.defense == False and self.boat1.health != 0:
                 if x+44 > self.boat1.x + 22 > x and y+44 > self.boat1.y + 22 > y or x+44 > self.boat1.x + 22 > x and y+44 > self.boat1.y + 67 > y:
                     self.boat1.health -= 1
                     self.boat8.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat1.health == 0:
+                        mom.play(loops = 0)  
             if self.boat_attack == 15 and self.boat8.attack != 0 and self.player_attack != 0 and self.boat1.defense == True and self.boat1.health != 0 or self.boat_attack == 16 and self.boat8.attack != 0 and self.player_attack != 0 and self.boat1.defense == True and self.boat1.health != 0:
                 if x+44 > self.boat1.x + 22 > x and y+44 > self.boat1.y + 22 > y or x+44 > self.boat1.x + 67 > x and y+44 > self.boat1.y + 22 > y:
                     self.boat1.health -= 1
                     self.boat8.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat1.health == 0:
+                        mom.play(loops = 0)  
             if self.boat_attack == 15 and self.boat8.attack != 0 and self.player_attack != 0 and self.boat3.defense == False and self.boat3.health != 0 or self.boat_attack == 16 and self.boat8.attack != 0 and self.player_attack != 0 and self.boat3.defense == False and self.boat3.health != 0:
                 if x+44 > self.boat3.x + 22 > x and y+44 > self.boat3.y + 22 > y or x+44 > self.boat3.x + 22 > x and y+44 > self.boat3.y + 67 > y or x+44 > self.boat3.x + 22 > x and y+44 > self.boat3.y + 112 > y:
                     self.boat3.health -= 1
                     self.boat8.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat3.health == 0:
+                        mom.play(loops = 0) 
             if self.boat_attack == 15 and self.boat8.attack != 0 and self.player_attack != 0 and self.boat3.defense == True and self.boat3.health != 0 or self.boat_attack == 16 and self.boat8.attack != 0 and self.player_attack != 0 and self.boat3.defense == True and self.boat3.health != 0:
                 if x+44 > self.boat3.x + 22 > x and y+44 > self.boat3.y + 22 > y or x+44 > self.boat3.x + 67 > x and y+44 > self.boat3.y + 22 > y or x+44 > self.boat3.x + 112 > x and y+44 > self.boat3.y + 22 > y:
                     self.boat3.health -= 1
                     self.boat8.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat3.health == 0:
+                        mom.play(loops = 0) 
             if self.boat_attack == 15 and self.boat8.attack != 0 and self.player_attack != 0 and self.boat5.defense == False and self.boat5.health != 0 or self.boat_attack == 16 and self.boat8.attack != 0 and self.player_attack != 0 and self.boat5.defense == False and self.boat5.health != 0:
                 if x+44 > self.boat5.x + 22 > x and y+44 > self.boat5.y + 22 > y or x+44 > self.boat5.x + 22 > x and y+44 > self.boat5.y + 67 > y or x+44 > self.boat5.x + 22 > x and y+44 > self.boat5.y + 112 > y:
                     self.boat5.health -= 1
                     self.boat8.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat5.health == 0:
+                        mom.play(loops = 0)
             if self.boat_attack == 15 and self.boat8.attack != 0 and self.player_attack != 0 and self.boat5.defense == True and self.boat5.health != 0 or self.boat_attack == 16 and self.boat8.attack != 0 and self.player_attack != 0 and self.boat5.defense == True and self.boat5.health != 0:
                 if x+44 > self.boat5.x + 22 > x and y+44 > self.boat5.y + 22 > y or x+44 > self.boat5.x + 67 > x and y+44 > self.boat5.y + 22 > y or x+44 > self.boat5.x + 112 > x and y+44 > self.boat5.y + 22 > y:
                     self.boat5.health -= 1
                     self.boat8.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat5.health == 0:
+                        mom.play(loops = 0)
             if self.boat_attack == 15 and self.boat8.attack != 0 and self.player_attack != 0 and self.boat7.defense == False and self.boat7.health != 0 or self.boat_attack == 16 and self.boat8.attack != 0 and self.player_attack != 0 and self.boat7.defense == False and self.boat7.health != 0:
                 if x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 22 > y or x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 67 > y or x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 112 > y or x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 157 > y:
                     self.boat7.health -= 1
                     self.boat8.attack -= 1
                     self.player_attack -= 1
+                    hitmark.play(loops = 0)
+                    if self.boat7.health == 0:
+                        mom.play(loops = 0)
             if self.boat_attack == 15 and self.boat8.attack != 0 and self.player_attack != 0 and self.boat7.defense == True and self.boat7.health != 0 or self.boat_attack == 16 and self.boat8.attack != 0 and self.player_attack != 0 and self.boat7.defense == True and self.boat7.health != 0:
                 if x+44 > self.boat7.x + 22 > x and y+44 > self.boat7.y + 22 > y or x+44 > self.boat7.x + 67 > x and y+44 > self.boat7.y + 22 > y or x+44 > self.boat7.x + 112 > x and y+44 > self.boat7.y + 22 > y or x+44 > self.boat7.x + 157 > x and y+44 > self.boat7.y + 22 > y:
                     self.boat7.health -= 1
                     self.boat8.attack -= 1
-                    self.player_attack -= 1    
+                    self.player_attack -= 1
+                    hitmark.play(loops = 0)    
+                    if self.boat7.health == 0:
+                        mom.play(loops = 0)
 
     def Win(self):
         if self.player1_win == True:
             functions.text("comicsansms", 200, saved_name1 +" won!!!", (screen_width/2), (screen_height/4), colors.bright_red)
             functions.button("rematch", (screen_width/2), (screen_height/2), 150, 50, colors.green, colors.bright_green, self.reset)
-            stats = download_leaderboards()
-            updated = False
-            updated2 = False
-            for stat in stats:
-                if stat[0] == saved_name1:
-                    updated = True
-                    update_leaderboards(saved_name1, stat[1] + 1, stat[2])
-                    break
-            for stat in stats:
-                if stat[0] == saved_name2:
-                    updated2 = True
-                    update_leaderboards(saved_name2, stat[1], stat[2] + 1)
-                    break
-            if not updated:
-                insert_leaderboards(saved_name1, 1, 0)
-            if not updated2:
-                insert_leaderboards(saved_name2, 0, 1)
+            darude.play(loops = 0)
 
         if self.player2_win == True:
             functions.text("comicsansms", 200, saved_name2 + " won!!!", (screen_width/2), (screen_height/4), colors.bright_blue)
             functions.button("rematch", (screen_width/2), (screen_height/2), 150, 50, colors.green, colors.bright_green, self.reset)
-            stats = download_leaderboards()
-            updated = False
-            updated2 = False
-            for stat in stats:
-                if stat[0] == saved_name2:
-                    updated = True
-                    update_leaderboards(saved_name2, stat[1] + 1, stat[2])
-                    break
-            for stat in stats:
-                if stat[0] == saved_name1:
-                    updated2 = True
-                    update_leaderboards(saved_name1, stat[1], stat[2] + 1)
-                    break
-            if not updated:
-                insert_leaderboards(saved_name2, 1, 0)
-            if not updated2:
-                insert_leaderboards(saved_name1, 0, 1)
+            darude.play(loops = 0)
 
     def reset(self):
         self.player1_win = False
@@ -2049,6 +2251,11 @@ board = Board()
 player = Player()
 
 sound = pygame.mixer.Sound("dat_boi.wav")
+hitmark = pygame.mixer.Sound("hitmarker.wav")
+oemp = pygame.mixer.Sound("oemp.wav")
+mom = pygame.mixer.Sound("mom.wav")
+darude = pygame.mixer.Sound("darude.wav")
+wow = pygame.mixer.Sound("wow.wav")
 sound.play(loops = -1)
 intro()
 pygame.quit()
