@@ -287,7 +287,7 @@ class Card():
 
 class Player():
     def __init__(self):
-        self.player1_win = True
+        self.player1_win = False
         self.player2_win = False
 
         self.player1_turn = True
